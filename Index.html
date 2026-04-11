@@ -346,6 +346,27 @@
   /* FADE IN */
   .fi{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease;}
   .fi.vis{opacity:1;transform:translateY(0);}
+
+  /* YOUTUBE BUTTONS */
+  .yt-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:28px; height:28px; border-radius:6px;
+    background:rgba(255,0,0,0.15); border:1px solid rgba(255,0,0,0.3);
+    color:#FF4444; font-size:.75rem; text-decoration:none;
+    transition:background .2s, border-color .2s, transform .15s;
+    line-height:1;
+  }
+  .yt-btn:hover{background:rgba(255,0,0,0.3); border-color:rgba(255,0,0,0.6); transform:scale(1.1);}
+
+  .mob-yt-btn{
+    display:flex; align-items:center; justify-content:center; gap:.5rem;
+    margin-top:.9rem; padding:.65rem 1rem; border-radius:8px;
+    background:rgba(255,0,0,0.12); border:1px solid rgba(255,0,0,0.25);
+    color:#FF5555; font-family:'Bebas Neue',sans-serif;
+    letter-spacing:.1em; font-size:.8rem; text-decoration:none;
+    transition:background .2s, border-color .2s;
+  }
+  .mob-yt-btn:hover{background:rgba(255,0,0,0.22); border-color:rgba(255,0,0,0.45);}
 </style>
 </head>
 <body>
@@ -569,6 +590,7 @@
             <th onclick="sort(7)">Merit Rank</th>
             <th onclick="sort(8)">Pos. Delta</th>
             <th>Signal</th>
+            <th>Watch</th>
           </tr>
         </thead>
         <tbody id="tb"></tbody>
@@ -718,41 +740,41 @@
 
 <script>
 const entries=[
-  {country:"Albania",        song:"Alis — Nân",                                     mkt:1,  jury:6.79,pub:6.15,combined:6.38,sf:"sf2", auto:false},
-  {country:"Armenia",        song:"SIMÓN — Paloma Rumba",                            mkt:1,  jury:6.79,pub:6.67,combined:6.69,sf:"sf2", auto:false},
-  {country:"Australia",      song:"Delta Goodrem — Eclipse",                         mkt:8,  jury:7.84,pub:7.03,combined:7.44,sf:"sf2", auto:false},
-  {country:"Austria",        song:"COSMÓ — Tanzschein",                              mkt:2,  jury:7.17,pub:6.78,combined:7.00,sf:"auto",auto:true },
-  {country:"Azerbaijan",     song:"JIVA — Just Go",                                  mkt:1,  jury:6.13,pub:6.11,combined:6.11,sf:"sf2", auto:false},
-  {country:"Belgium",        song:"ESSYLA — Dancing on the Ice",                     mkt:1,  jury:6.62,pub:5.99,combined:6.24,sf:"sf1", auto:false},
-  {country:"Bulgaria",       song:"DARA — Bangaranga",                               mkt:2,  jury:7.29,pub:7.22,combined:7.21,sf:"sf2", auto:false},
-  {country:"Croatia",        song:"LELEK — Andromeda",                               mkt:2,  jury:7.41,pub:7.06,combined:7.19,sf:"sf1", auto:false},
-  {country:"Cyprus",         song:"Antigoni — JALLA",                                mkt:2,  jury:6.93,pub:7.17,combined:6.98,sf:"sf2", auto:false},
-  {country:"Czechia",        song:"Daniel Žižka — CROSSROADS",                      mkt:2,  jury:6.45,pub:5.67,combined:6.00,sf:"sf2", auto:false},
-  {country:"Denmark",        song:"Søren Torpegaard Lund — Før vi går hjem",         mkt:10, jury:7.11,pub:6.72,combined:6.93,sf:"sf2", auto:false},
-  {country:"Estonia",        song:"Vanilla Ninja — Too Epic To Be True",             mkt:1,  jury:6.82,pub:6.36,combined:6.59,sf:"sf1", auto:false},
-  {country:"Finland",        song:"Linda Lampenius & Pete Parkkonen — Liekinheitin", mkt:31, jury:7.87,pub:7.15,combined:7.57,sf:"sf1", auto:false},
-  {country:"France",         song:"Monroe — Regarde !",                              mkt:11, jury:7.52,pub:6.69,combined:7.13,sf:"auto",auto:true },
-  {country:"Georgia",        song:"Bzikebi — On Replay",                             mkt:1,  jury:6.05,pub:6.06,combined:6.05,sf:"sf1", auto:false},
-  {country:"Germany",        song:"Sarah Engels — Fire",                              mkt:1,  jury:5.80,pub:5.34,combined:5.55,sf:"auto",auto:true },
-  {country:"Greece",         song:"Akylas — Ferto",                                  mkt:8,  jury:8.02,pub:7.82,combined:7.85,sf:"sf1", auto:false},
-  {country:"Israel",         song:"Noam Bettan — Michelle",                          mkt:5,  jury:6.82,pub:7.21,combined:6.97,sf:"sf1", auto:false},
-  {country:"Italy",          song:"Sal Da Vinci — Per sempre sì",                    mkt:3,  jury:6.68,pub:6.15,combined:6.39,sf:"auto",auto:true },
-  {country:"Latvia",         song:"Atvara — Ēnā",                                    mkt:1,  jury:6.94,pub:6.25,combined:6.53,sf:"sf1", auto:false},
-  {country:"Lithuania",      song:"Lion Ceccah — Sólo Quiero Más",                  mkt:1,  jury:6.72,pub:6.49,combined:6.57,sf:"sf1", auto:false},
-  {country:"Luxembourg",     song:"Eva Marija — Mother Nature",                      mkt:1,  jury:7.11,pub:6.46,combined:6.74,sf:"sf2", auto:false},
-  {country:"Malta",          song:"AIDAN — Bella",                                   mkt:1,  jury:6.34,pub:6.20,combined:6.25,sf:"sf2", auto:false},
-  {country:"Moldova",        song:"Satoshi — Viva, Moldova!",                        mkt:1,  jury:6.91,pub:7.12,combined:6.95,sf:"sf1", auto:false},
-  {country:"Montenegro",     song:"Tamara Živković — Nova Zora",                     mkt:1,  jury:6.96,pub:6.31,combined:6.57,sf:"sf1", auto:false},
-  {country:"Norway",         song:"JONAS LOVV — YA YA YA",                          mkt:2,  jury:6.68,pub:6.70,combined:6.74,sf:"sf2", auto:false},
-  {country:"Poland",         song:"ALICJA — Pray",                                  mkt:2,  jury:7.29,pub:6.65,combined:6.92,sf:"sf2", auto:false},
-  {country:"Portugal",       song:"Bandidos do Cante — Rosa",                        mkt:1,  jury:7.00,pub:5.96,combined:6.38,sf:"sf1", auto:false},
-  {country:"Romania",        song:"Alexandra Căpitănescu — Choke Me",                mkt:4,  jury:7.45,pub:7.19,combined:7.24,sf:"sf2", auto:false},
-  {country:"San Marino",     song:"SENHIT — Superstar",                              mkt:1,  jury:6.94,pub:6.74,combined:6.86,sf:"sf1", auto:false},
-  {country:"Serbia",         song:"LAVINA — Kraj Mene",                              mkt:1,  jury:7.06,pub:6.76,combined:6.84,sf:"sf1", auto:false},
-  {country:"Sweden",         song:"FELICIA — My System",                             mkt:4,  jury:7.38,pub:6.91,combined:7.20,sf:"sf1", auto:false},
-  {country:"Switzerland",    song:"Veronica Fusaro — Alice",                         mkt:1,  jury:7.07,pub:6.30,combined:6.63,sf:"sf2", auto:false},
-  {country:"Ukraine",        song:"LELÉKA — Ridnym",                                 mkt:3,  jury:7.89,pub:7.85,combined:7.79,sf:"sf2", auto:false},
-  {country:"United Kingdom", song:"LOOK MUM NO COMPUTER — Eins, Zwei, Drei",        mkt:1,  jury:5.95,pub:5.14,combined:5.45,sf:"auto",auto:true },
+  {country:"Albania",        song:"Alis — Nân",                                     mkt:1,  jury:6.79,pub:6.15,combined:6.38,sf:"sf2", auto:false, yt:"https://www.youtube.com/watch?v=WB76D0JWWA0"},
+  {country:"Armenia",        song:"SIMÓN — Paloma Rumba",                            mkt:1,  jury:6.79,pub:6.67,combined:6.69,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Eurovision+2026+Armenia+SIMON+Paloma+Rumba+official"},
+  {country:"Australia",      song:"Delta Goodrem — Eclipse",                         mkt:8,  jury:7.84,pub:7.03,combined:7.44,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Delta+Goodrem+Eclipse+Eurovision+2026+official"},
+  {country:"Austria",        song:"COSMÓ — Tanzschein",                              mkt:2,  jury:7.17,pub:6.78,combined:7.00,sf:"auto",auto:true,  yt:"https://www.youtube.com/watch?v=zPGP9ZphxiY"},
+  {country:"Azerbaijan",     song:"JIVA — Just Go",                                  mkt:1,  jury:6.13,pub:6.11,combined:6.11,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=JIVA+Just+Go+Eurovision+2026+Azerbaijan+official"},
+  {country:"Belgium",        song:"ESSYLA — Dancing on the Ice",                     mkt:1,  jury:6.62,pub:5.99,combined:6.24,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=ESSYLA+Dancing+on+the+Ice+Eurovision+2026+Belgium+official"},
+  {country:"Bulgaria",       song:"DARA — Bangaranga",                               mkt:2,  jury:7.29,pub:7.22,combined:7.21,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=DARA+Bangaranga+Eurovision+2026+Bulgaria+official"},
+  {country:"Croatia",        song:"LELEK — Andromeda",                               mkt:2,  jury:7.41,pub:7.06,combined:7.19,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=LELEK+Andromeda+Eurovision+2026+Croatia+official"},
+  {country:"Cyprus",         song:"Antigoni — JALLA",                                mkt:2,  jury:6.93,pub:7.17,combined:6.98,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Antigoni+JALLA+Eurovision+2026+Cyprus+official"},
+  {country:"Czechia",        song:"Daniel Žižka — CROSSROADS",                      mkt:2,  jury:6.45,pub:5.67,combined:6.00,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Daniel+Zizka+CROSSROADS+Eurovision+2026+Czechia+official"},
+  {country:"Denmark",        song:"Søren Torpegaard Lund — Før vi går hjem",         mkt:10, jury:7.11,pub:6.72,combined:6.93,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Soren+Torpegaard+For+vi+gar+hjem+Eurovision+2026+Denmark+official"},
+  {country:"Estonia",        song:"Vanilla Ninja — Too Epic To Be True",             mkt:1,  jury:6.82,pub:6.36,combined:6.59,sf:"sf1", auto:false, yt:"https://www.youtube.com/watch?v=NaXdeENuhDA"},
+  {country:"Finland",        song:"Linda Lampenius & Pete Parkkonen — Liekinheitin", mkt:31, jury:7.87,pub:7.15,combined:7.57,sf:"sf1", auto:false, yt:"https://www.youtube.com/watch?v=IPvJbGy5_o0"},
+  {country:"France",         song:"Monroe — Regarde !",                              mkt:11, jury:7.52,pub:6.69,combined:7.13,sf:"auto",auto:true,  yt:"https://www.youtube.com/results?search_query=Monroe+Regarde+Eurovision+2026+France+official"},
+  {country:"Georgia",        song:"Bzikebi — On Replay",                             mkt:1,  jury:6.05,pub:6.06,combined:6.05,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Bzikebi+On+Replay+Eurovision+2026+Georgia+official"},
+  {country:"Germany",        song:"Sarah Engels — Fire",                              mkt:1,  jury:5.80,pub:5.34,combined:5.55,sf:"auto",auto:true,  yt:"https://www.youtube.com/results?search_query=Sarah+Engels+Fire+Eurovision+2026+Germany+official"},
+  {country:"Greece",         song:"Akylas — Ferto",                                  mkt:8,  jury:8.02,pub:7.82,combined:7.85,sf:"sf1", auto:false, yt:"https://www.youtube.com/watch?v=NGwNTd_DA9s"},
+  {country:"Israel",         song:"Noam Bettan — Michelle",                          mkt:5,  jury:6.82,pub:7.21,combined:6.97,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Noam+Bettan+Michelle+Eurovision+2026+Israel+official"},
+  {country:"Italy",          song:"Sal Da Vinci — Per sempre sì",                    mkt:3,  jury:6.68,pub:6.15,combined:6.39,sf:"auto",auto:true,  yt:"https://www.youtube.com/results?search_query=Sal+Da+Vinci+Per+sempre+si+Eurovision+2026+Italy+official"},
+  {country:"Latvia",         song:"Atvara — Ēnā",                                    mkt:1,  jury:6.94,pub:6.25,combined:6.53,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Atvara+Ena+Eurovision+2026+Latvia+official"},
+  {country:"Lithuania",      song:"Lion Ceccah — Sólo Quiero Más",                  mkt:1,  jury:6.72,pub:6.49,combined:6.57,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Lion+Ceccah+Solo+Quiero+Mas+Eurovision+2026+Lithuania+official"},
+  {country:"Luxembourg",     song:"Eva Marija — Mother Nature",                      mkt:1,  jury:7.11,pub:6.46,combined:6.74,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Eva+Marija+Mother+Nature+Eurovision+2026+Luxembourg+official"},
+  {country:"Malta",          song:"AIDAN — Bella",                                   mkt:1,  jury:6.34,pub:6.20,combined:6.25,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=AIDAN+Bella+Eurovision+2026+Malta+official"},
+  {country:"Moldova",        song:"Satoshi — Viva, Moldova!",                        mkt:1,  jury:6.91,pub:7.12,combined:6.95,sf:"sf1", auto:false, yt:"https://www.youtube.com/watch?v=ZC9VEIkKNJ4"},
+  {country:"Montenegro",     song:"Tamara Živković — Nova Zora",                     mkt:1,  jury:6.96,pub:6.31,combined:6.57,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Tamara+Zivkovic+Nova+Zora+Eurovision+2026+Montenegro+official"},
+  {country:"Norway",         song:"JONAS LOVV — YA YA YA",                          mkt:2,  jury:6.68,pub:6.70,combined:6.74,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Jonas+Lovv+Ya+Ya+Ya+Eurovision+2026+Norway+official"},
+  {country:"Poland",         song:"ALICJA — Pray",                                  mkt:2,  jury:7.29,pub:6.65,combined:6.92,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Alicja+Pray+Eurovision+2026+Poland+official"},
+  {country:"Portugal",       song:"Bandidos do Cante — Rosa",                        mkt:1,  jury:7.00,pub:5.96,combined:6.38,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Bandidos+do+Cante+Rosa+Eurovision+2026+Portugal+official"},
+  {country:"Romania",        song:"Alexandra Căpitănescu — Choke Me",                mkt:4,  jury:7.45,pub:7.19,combined:7.24,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Alexandra+Capitanescu+Choke+Me+Eurovision+2026+Romania+official"},
+  {country:"San Marino",     song:"SENHIT — Superstar",                              mkt:1,  jury:6.94,pub:6.74,combined:6.86,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=SENHIT+Superstar+Eurovision+2026+San+Marino+official"},
+  {country:"Serbia",         song:"LAVINA — Kraj Mene",                              mkt:1,  jury:7.06,pub:6.76,combined:6.84,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=LAVINA+Kraj+Mene+Eurovision+2026+Serbia+official"},
+  {country:"Sweden",         song:"FELICIA — My System",                             mkt:4,  jury:7.38,pub:6.91,combined:7.20,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=FELICIA+My+System+Eurovision+2026+Sweden+official"},
+  {country:"Switzerland",    song:"Veronica Fusaro — Alice",                         mkt:1,  jury:7.07,pub:6.30,combined:6.63,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Veronica+Fusaro+Alice+Eurovision+2026+Switzerland+official"},
+  {country:"Ukraine",        song:"LELÉKA — Ridnym",                                 mkt:3,  jury:7.89,pub:7.85,combined:7.79,sf:"sf2", auto:false, yt:"https://www.youtube.com/watch?v=SoEXezpblAc"},
+  {country:"United Kingdom", song:"LOOK MUM NO COMPUTER — Eins, Zwei, Drei",        mkt:1,  jury:5.95,pub:5.14,combined:5.45,sf:"auto",auto:true,  yt:"https://www.youtube.com/results?search_query=Look+Mum+No+Computer+Eins+Zwei+Drei+Eurovision+2026+UK+official"},
 ];
 
 function avgRanks(arr,kfn){
@@ -833,6 +855,7 @@ function render(){
       <td style="color:var(--muted)">#${Math.round(e.meritRank)}</td>
       <td>${dh(e)}</td>
       <td>${sh(e.signal)}</td>
+      <td><a href="${e.yt}" target="_blank" rel="noopener" class="yt-btn" title="Watch on YouTube">▶</a></td>
     </tr>`).join('');
 }
 function sort(c){
@@ -936,6 +959,7 @@ function renderMobCards(){
           <span>Bookie rank: #${Math.round(e.mktRank)}</span>
           <span>Our rank: #${Math.round(e.meritRank)}</span>
         </div>
+        <a href="${e.yt}" target="_blank" rel="noopener" class="mob-yt-btn">▶ Watch on YouTube</a>
       </div>
     </div>`;
   }).join('');
