@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eurovision 2026 — The Market Is Wrong | The Unanswered Sandbox</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold:#FFD700; --gold-dim:rgba(255,215,0,0.10);
+    --pink:#FF2D78; --pink-dim:rgba(255,45,120,0.09);
+    --blue:#00C8FF; --blue-dim:rgba(0,200,255,0.09);
+    --midnight:#0D001F; --off-white:#F5F0E8; --muted:#9B8FAA;
+    --green:#00E676; --green-dim:rgba(0,230,118,0.08); --green-b:rgba(0,230,118,0.25);
+    --red:#FF3D57;   --red-dim:rgba(255,61,87,0.08);   --red-b:rgba(255,61,87,0.25);
+    --card:rgba(255,255,255,0.035); --border:rgba(255,255,255,0.07); --bh:rgba(255,255,255,0.14);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{background:var(--midnight);color:var(--off-white);font-family:'DM Sans',sans-serif;font-weight:300;line-height:1.7;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(ellipse 70% 50% at 15% -5%,rgba(255,45,120,0.14) 0%,transparent 65%),
+               radial-gradient(ellipse 55% 40% at 85% 105%,rgba(0,200,255,0.11) 0%,transparent 65%),
+               radial-gradient(ellipse 90% 60% at 50% 50%,rgba(26,5,51,0.7) 0%,transparent 80%);}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;background:rgba(13,0,31,0.88);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);}
+  .nav-brand{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.14em;color:var(--muted);text-decoration:none;transition:color .2s;}
+  .nav-brand:hover{color:var(--off-white);}
+  .nav-links{display:flex;gap:2rem;list-style:none;}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:.75rem;letter-spacing:.09em;text-transform:uppercase;transition:color .2s;}
+  .nav-links a:hover{color:var(--gold);}
+  @media(max-width:640px){.nav-links{display:none;}nav{padding:1rem 1.5rem;}}
+
+  /* LAYOUT */
+  .page{position:relative;z-index:1;}
+  .wrap{max-width:980px;margin:0 auto;padding:0 2rem;}
+  @media(max-width:640px){.wrap{padding:0 1.25rem;}}
+  section{padding:5rem 0;}
+  @media(max-width:640px){section{padding:3.5rem 0;}}
+  hr.div{border:none;border-top:1px solid var(--border);margin:0 2rem;}
+
+  /* TYPE */
+  .eyebrow{display:flex;align-items:center;gap:.9rem;font-family:'Bebas Neue',sans-serif;letter-spacing:.18em;font-size:.8rem;margin-bottom:1.4rem;}
+  .eyebrow::before{content:'';display:block;width:32px;height:2px;flex-shrink:0;}
+  .eyebrow.pink{color:var(--pink);}.eyebrow.pink::before{background:var(--pink);}
+  .eyebrow.blue{color:var(--blue);}.eyebrow.blue::before{background:var(--blue);}
+  .eyebrow.gold{color:var(--gold);}.eyebrow.gold::before{background:var(--gold);}
+  h2{font-family:'DM Serif Display',serif;font-size:clamp(2rem,4.5vw,3rem);line-height:1.12;margin-bottom:1.4rem;}
+  h2 em{font-style:italic;color:var(--gold);}
+  .lead{font-size:1.05rem;color:var(--muted);max-width:660px;line-height:1.8;margin-bottom:2.5rem;}
+
+  /* HERO */
+  .hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:9rem 2.5rem 5rem;max-width:980px;margin:0 auto;position:relative;}
+  .hero-kicker{font-family:'Bebas Neue',sans-serif;letter-spacing:.18em;font-size:.82rem;color:var(--pink);margin-bottom:1.8rem;display:flex;align-items:center;gap:.9rem;}
+  .hero-kicker::before{content:'';display:block;width:32px;height:2px;background:var(--pink);flex-shrink:0;}
+  .hero-verdict{font-family:'DM Serif Display',serif;font-size:clamp(1rem,2.5vw,1.45rem);color:var(--muted);font-style:italic;margin-bottom:.8rem;line-height:1.4;}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:clamp(3rem,9vw,7rem);line-height:.95;margin-bottom:2rem;}
+  .hero h1 em{font-style:italic;color:var(--gold);}
+  .hero h1 span{display:block;}
+  .hero-meta{display:flex;gap:3rem;flex-wrap:wrap;border-top:1px solid var(--border);padding-top:2rem;margin-top:.5rem;}
+  .hero-meta-val{font-family:'Bebas Neue',sans-serif;font-size:2.6rem;line-height:1;color:var(--gold);display:block;}
+  .hero-meta-label{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);}
+  .scroll-hint{position:absolute;bottom:2.5rem;left:2.5rem;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.5rem;animation:nudge 2.2s ease-in-out infinite;}
+  .scroll-hint::after{content:'↓';font-size:1rem;}
+  @keyframes nudge{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(5px);opacity:1}}
+
+  /* VOICE */
+  .voice-section{background:rgba(255,255,255,0.02);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .voice-inner{max-width:980px;margin:0 auto;padding:4rem 2rem;display:grid;grid-template-columns:1fr 2fr;gap:4rem;align-items:start;}
+  @media(max-width:640px){.voice-inner{grid-template-columns:1fr;gap:2rem;padding:3rem 1.25rem;}}
+  .voice-name{font-family:'DM Serif Display',serif;font-size:1.4rem;margin-bottom:.3rem;}
+  .voice-role{font-size:.78rem;color:var(--muted);letter-spacing:.06em;text-transform:uppercase;line-height:1.6;}
+  .voice-role a{color:var(--muted);}
+  .voice-text p{font-size:1.05rem;line-height:1.85;color:var(--off-white);font-weight:300;margin-bottom:1.2rem;}
+  .voice-text p:last-child{margin-bottom:0;}
+  .voice-text em{font-style:italic;color:var(--muted);}
+  .voice-text strong{font-weight:500;color:var(--gold);}
+
+  /* PODIUM */
+  .podium-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1.5rem;margin-bottom:3rem;align-items:end;}
+  @media(max-width:700px){.podium-row{grid-template-columns:1fr;align-items:start;}}
+  .podium-card{border-radius:14px;padding:2rem 1.75rem;border:1px solid var(--border);position:relative;overflow:hidden;transition:transform .3s,border-color .3s;}
+  .podium-card:hover{transform:translateY(-4px);border-color:var(--bh);}
+  .podium-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;}
+  .p1::before{background:linear-gradient(90deg,var(--gold),#FFA000);}
+  .p2::before{background:linear-gradient(90deg,#C0C0C0,#9E9E9E);}
+  .p3::before{background:linear-gradient(90deg,#CD7F32,#A0522D);}
+  .p1{background:linear-gradient(145deg,rgba(255,215,0,0.07),var(--card));border-color:rgba(255,215,0,0.2);}
+  .p2{background:linear-gradient(145deg,rgba(192,192,192,0.05),var(--card));}
+  .p3{background:linear-gradient(145deg,rgba(205,127,50,0.05),var(--card));}
+  .pod-pos{font-family:'Bebas Neue',sans-serif;font-size:3.5rem;line-height:1;margin-bottom:.5rem;display:block;}
+  .p1 .pod-pos{color:var(--gold);}.p2 .pod-pos{color:#C0C0C0;}.p3 .pod-pos{color:#CD7F32;}
+  .pod-country{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.2rem;}
+  .pod-song{font-size:.78rem;color:var(--muted);letter-spacing:.04em;margin-bottom:1rem;}
+  .pod-scores{display:flex;gap:1.2rem;margin-bottom:1rem;flex-wrap:wrap;}
+  .pod-sv{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;line-height:1;display:block;color:var(--gold);}
+  .pod-sl{font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+  .pod-note{font-size:.82rem;color:var(--muted);line-height:1.65;}
+
+  /* RANKED LIST */
+  .ranked-list{display:flex;flex-direction:column;gap:.75rem;}
+  .ranked-item{display:grid;grid-template-columns:2.5rem 1fr auto;align-items:center;gap:1.2rem;background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1rem 1.4rem;transition:border-color .25s,transform .25s;}
+  .ranked-item:hover{border-color:var(--bh);transform:translateX(3px);}
+  .ranked-item.t5{border-left:3px solid var(--pink);}
+  .ranked-item.t10{border-left:3px solid rgba(255,45,120,0.3);}
+  .rn{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--muted);line-height:1;}
+  .rc{font-weight:500;font-size:.95rem;margin-bottom:.15rem;}
+  .rs{font-size:.75rem;color:var(--muted);}
+  .rv{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--gold);white-space:nowrap;}
+
+  /* FINDINGS */
+  .findings-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.4rem;margin-top:2.5rem;}
+  .fc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;transition:border-color .3s,transform .3s;}
+  .fc:hover{border-color:var(--bh);transform:translateY(-2px);}
+  .ftag{display:inline-flex;align-items:center;gap:.4rem;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:.68rem;padding:.28rem .7rem;border-radius:4px;margin-bottom:1.1rem;}
+  .tu{background:rgba(0,230,118,0.12);color:var(--green);border:1px solid var(--green-b);}
+  .to{background:rgba(255,61,87,0.12);color:var(--red);border:1px solid var(--red-b);}
+  .tw{background:rgba(255,215,0,0.10);color:var(--gold);border:1px solid rgba(255,215,0,0.25);}
+  .fcn{font-family:'DM Serif Display',serif;font-size:1.5rem;margin-bottom:.2rem;}
+  .fcs{font-size:.76rem;color:var(--muted);margin-bottom:1.1rem;}
+  .fnum{display:flex;gap:1.4rem;margin-bottom:1.1rem;flex-wrap:wrap;}
+  .fv{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;line-height:1;display:block;}
+  .fg{color:var(--green);}.fr{color:var(--red);}.fn{color:var(--gold);}
+  .fl{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+  .fb{font-size:.86rem;color:var(--muted);line-height:1.7;}
+
+  /* PULL QUOTE */
+  .pq{border-left:3px solid var(--gold);padding:1.4rem 2rem;margin:2.5rem 0;background:rgba(255,215,0,0.03);border-radius:0 8px 8px 0;}
+  .pq p{font-family:'DM Serif Display',serif;font-size:1.25rem;line-height:1.55;font-style:italic;}
+  .pq cite{display:block;margin-top:.7rem;font-size:.74rem;color:var(--muted);font-style:normal;letter-spacing:.07em;text-transform:uppercase;}
+
+  /* DELTA BOX */
+  .dbox{background:linear-gradient(135deg,rgba(255,215,0,0.05),rgba(255,45,120,0.05));border:1px solid rgba(255,215,0,0.18);border-radius:14px;padding:2.2rem;margin:2.5rem 0;}
+  .dbox h3{font-family:'DM Serif Display',serif;font-size:1.35rem;margin-bottom:.9rem;}
+  .dbox p{color:var(--muted);font-size:.92rem;line-height:1.75;max-width:680px;}
+
+  /* TABLE */
+  .filter-row{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+  .fbtn{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:.38rem .95rem;border-radius:6px;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:.72rem;cursor:pointer;transition:all .2s;}
+  .fbtn:hover,.fbtn.active{background:rgba(255,215,0,0.09);border-color:rgba(255,215,0,0.35);color:var(--gold);}
+  .sinput{background:var(--card);border:1px solid var(--border);border-radius:7px;color:var(--off-white);font-family:'DM Sans',sans-serif;font-size:.88rem;padding:.6rem 1rem;width:210px;outline:none;transition:border-color .2s;margin-bottom:1rem;display:block;}
+  .sinput:focus{border-color:rgba(255,215,0,0.35);}
+  .sinput::placeholder{color:var(--muted);}
+  .twrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);}
+  table{width:100%;border-collapse:collapse;font-size:.8rem;}
+  thead tr{background:rgba(255,255,255,0.04);border-bottom:1px solid var(--border);}
+  th{padding:.9rem 1.1rem;text-align:left;font-family:'Bebas Neue',sans-serif;letter-spacing:.12em;font-size:.7rem;color:var(--muted);white-space:nowrap;cursor:pointer;user-select:none;transition:color .2s;}
+  th:hover{color:var(--gold);}th.sorted{color:var(--gold);}
+  td{padding:.8rem 1.1rem;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap;}
+  tr:last-child td{border-bottom:none;}
+
+  /* Row colour tiers */
+  tr.rw td{background:linear-gradient(90deg,rgba(255,215,0,0.13),rgba(255,215,0,0.04));}
+  tr.r5 td{background:linear-gradient(90deg,rgba(0,200,255,0.08),rgba(0,200,255,0.02));}
+  tr.r10 td{background:linear-gradient(90deg,rgba(255,45,120,0.06),rgba(255,45,120,0.01));}
+  tr.rw:hover td{background:rgba(255,215,0,0.17);}
+  tr.r5:hover td{background:rgba(0,200,255,0.12);}
+  tr.r10:hover td{background:rgba(255,45,120,0.09);}
+  tr:not(.rw):not(.r5):not(.r10):hover td{background:rgba(255,255,255,0.025);}
+
+  .cc{font-weight:500;max-width:190px;overflow:hidden;text-overflow:ellipsis;}
+  .sc{color:var(--muted);font-size:.75rem;max-width:185px;overflow:hidden;text-overflow:ellipsis;}
+  .vc{font-family:'DM Serif Display',serif;font-size:.95rem;}
+  .dc{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.04em;}
+  .dpos{color:var(--green);}.dneg{color:var(--red);}
+  .pill{display:inline-block;padding:.22rem .58rem;border-radius:4px;font-size:.66rem;font-family:'Bebas Neue',sans-serif;letter-spacing:.08em;}
+  .pu{background:var(--green-dim);color:var(--green);border:1px solid var(--green-b);}
+  .po{background:var(--red-dim);color:var(--red);border:1px solid var(--red-b);}
+  .pf{background:rgba(155,143,170,.1);color:var(--muted);border:1px solid rgba(155,143,170,.2);}
+
+  .legend-row{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:.9rem;font-size:.75rem;}
+  .li{display:flex;align-items:center;gap:.5rem;}
+  .sw{width:12px;height:12px;border-radius:2px;flex-shrink:0;}
+  .sw1{background:rgba(255,215,0,0.45);}.sw5{background:rgba(0,200,255,0.45);}.sw10{background:rgba(255,45,120,0.45);}
+
+  /* METHOD */
+  .ig{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.4rem;margin-top:2.2rem;}
+  .lc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:2rem;position:relative;overflow:hidden;transition:border-color .3s,transform .3s;}
+  .lc:hover{border-color:rgba(255,215,0,0.25);transform:translateY(-3px);}
+  .lc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+  .lj::before{background:var(--pink);}.lp::before{background:var(--blue);}.lw::before{background:var(--gold);}
+  .ln{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;line-height:1;margin-bottom:.4rem;}
+  .lj .ln{color:var(--pink);}.lp .ln{color:var(--blue);}.lw .ln{color:var(--gold);}
+  .lt{font-family:'DM Serif Display',serif;font-size:1.15rem;margin-bottom:.7rem;}
+  .ld{font-size:.82rem;color:var(--muted);line-height:1.65;}
+  .wr{display:flex;justify-content:space-between;font-size:.73rem;color:var(--muted);margin-top:.28rem;padding-top:.28rem;border-top:1px solid var(--border);}
+  .wr span:last-child{font-weight:600;color:var(--off-white);}
+  .cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(195px,1fr));gap:.7rem;margin-top:2rem;}
+  .crit{display:flex;align-items:flex-start;gap:.7rem;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.9rem 1.1rem;}
+  .cn{font-family:'Bebas Neue',sans-serif;font-size:1.15rem;color:var(--pink);line-height:1;flex-shrink:0;}
+  .ct{font-size:.78rem;color:var(--muted);line-height:1.5;}
+  .ct strong{display:block;color:var(--off-white);font-size:.82rem;margin-bottom:.15rem;}
+
+  /* TRANSPARENCY */
+  .tg{display:grid;grid-template-columns:1fr 1fr;gap:1.4rem;margin-top:2rem;}
+  @media(max-width:640px){.tg{grid-template-columns:1fr;}}
+  .tc{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.7rem;}
+  .tc h3{font-family:'DM Serif Display',serif;font-size:1.05rem;margin-bottom:.7rem;}
+
+  /* MOBILE OVERRIDES */
+  @media(max-width:640px){
+    /* Hero tightening */
+    .hero{padding:7rem 1.25rem 4rem;min-height:auto;}
+    .hero h1{font-size:clamp(2.6rem,13vw,4rem);margin-bottom:1.5rem;}
+    .hero-meta{gap:1.5rem;padding-top:1.5rem;}
+    .hero-meta-val{font-size:2rem;}
+    .scroll-hint{display:none;}
+
+    /* Voice section */
+    .voice-inner{padding:2.5rem 1.25rem;}
+
+    /* Podium: stack vertically, winner on top */
+    .podium-row{
+      display:flex; flex-direction:column; gap:1rem;
+    }
+    /* Reorder: gold (p1) first on mobile */
+    .podium-row .p1{order:1;}
+    .podium-row .p2{order:2;}
+    .podium-row .p3{order:3;}
+
+    /* Findings: single column */
+    .findings-grid{grid-template-columns:1fr;}
+
+    /* Pull quote smaller */
+    .pq p{font-size:1rem;}
+
+    /* Hide desktop table, show mobile cards */
+    .twrap{display:none;}
+    .legend-row{display:none;}
+    .filter-row{display:none;}
+    .sinput{width:100%;}
+    .mob-cards{display:flex;flex-direction:column;gap:.75rem;}
+
+    /* Delta box */
+    .dbox{padding:1.5rem;}
+
+    /* Method grid single col */
+    .ig{grid-template-columns:1fr;}
+    .cg{grid-template-columns:1fr 1fr;}
+  }
+
+  @media(min-width:641px){
+    .mob-cards{display:none;}
+  }
+
+  /* MOBILE ENTRY CARDS */
+  .mob-card{
+    background:var(--card); border:1px solid var(--border);
+    border-radius:12px; overflow:hidden;
+    transition:border-color .2s;
+  }
+  .mob-card.mc-winner{border-color:rgba(255,215,0,0.3); background:linear-gradient(135deg,rgba(255,215,0,0.07),var(--card));}
+  .mob-card.mc-top5  {border-color:rgba(0,200,255,0.2);  background:linear-gradient(135deg,rgba(0,200,255,0.05),var(--card));}
+  .mob-card.mc-top10 {border-color:rgba(255,45,120,0.2); background:linear-gradient(135deg,rgba(255,45,120,0.04),var(--card));}
+
+  .mob-card-head{
+    display:grid; grid-template-columns:2.2rem 1fr auto;
+    align-items:center; gap:.9rem;
+    padding:1rem 1.1rem; cursor:pointer;
+    user-select:none;
+  }
+  .mob-rank{
+    font-family:'Bebas Neue',sans-serif; font-size:1.5rem;
+    line-height:1; color:var(--muted); text-align:center;
+  }
+  .mc-winner .mob-rank{color:var(--gold);}
+  .mc-top5   .mob-rank{color:var(--blue);}
+  .mc-top10  .mob-rank{color:var(--pink);}
+
+  .mob-main{}
+  .mob-country{font-weight:500; font-size:.95rem; margin-bottom:.1rem;}
+  .mob-song{font-size:.72rem; color:var(--muted); line-height:1.3;}
+
+  .mob-head-right{display:flex;flex-direction:column;align-items:flex-end;gap:.3rem;}
+  .mob-combined{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--gold);}
+  .mob-chevron{font-size:.65rem;color:var(--muted);transition:transform .25s;letter-spacing:.05em;font-family:'Bebas Neue',sans-serif;}
+
+  .mob-card.open .mob-chevron{transform:rotate(180deg);}
+
+  .mob-card-body{
+    display:none; padding:0 1.1rem 1.1rem;
+    border-top:1px solid var(--border); margin-top:0;
+  }
+  .mob-card.open .mob-card-body{display:block;}
+
+  .mob-signal-row{padding:.7rem 0 .9rem; display:flex; gap:.6rem; align-items:center; flex-wrap:wrap;}
+
+  .mob-stats{
+    display:grid; grid-template-columns:1fr 1fr 1fr;
+    gap:.5rem; margin-bottom:.9rem;
+  }
+  .mob-stat{
+    background:rgba(255,255,255,0.04); border:1px solid var(--border);
+    border-radius:8px; padding:.6rem .7rem; text-align:center;
+  }
+  .mob-stat-val{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;line-height:1;display:block;color:var(--off-white);}
+  .mob-stat-label{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
+
+  .mob-delta-row{
+    display:flex; justify-content:space-between; align-items:center;
+    background:rgba(255,255,255,0.03); border:1px solid var(--border);
+    border-radius:8px; padding:.65rem .9rem; margin-bottom:.8rem;
+    font-size:.78rem;
+  }
+  .mob-delta-label{color:var(--muted);}
+  .mob-delta-val{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.04em;}
+
+  .mob-ranks{display:flex;gap:.5rem;margin-bottom:.4rem;font-size:.75rem;color:var(--muted);}
+  .mob-ranks span{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:5px;padding:.2rem .5rem;}
+
+  .mob-search{
+    width:100%; background:var(--card); border:1px solid var(--border);
+    border-radius:8px; color:var(--off-white); font-family:'DM Sans',sans-serif;
+    font-size:.9rem; padding:.7rem 1rem; outline:none; margin-bottom:1rem;
+    transition:border-color .2s; display:block;
+  }
+  .mob-search:focus{border-color:rgba(255,215,0,0.35);}
+  .mob-search::placeholder{color:var(--muted);}
+
+  .mob-filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;}
+  .mob-fbtn{
+    background:var(--card);border:1px solid var(--border);color:var(--muted);
+    padding:.32rem .8rem;border-radius:6px;font-family:'Bebas Neue',sans-serif;
+    letter-spacing:.1em;font-size:.68rem;cursor:pointer;transition:all .2s;
+  }
+  .mob-fbtn:hover,.mob-fbtn.active{background:rgba(255,215,0,0.09);border-color:rgba(255,215,0,0.35);color:var(--gold);}
+
+  .mob-count{font-size:.75rem;color:var(--muted);margin-bottom:.9rem;}
+
+  /* Mobile legend */
+  .mob-legend{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.72rem;}
+  .mob-legend .li{display:flex;align-items:center;gap:.4rem;}
+  .mob-legend .sw{width:10px;height:10px;border-radius:2px;}
+  .tc p{font-size:.83rem;color:var(--muted);line-height:1.7;}
+
+  /* FOOTER */
+  footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:3rem 2.5rem;max-width:980px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem;}
+  .fb2{font-family:'DM Serif Display',serif;font-size:1.25rem;margin-bottom:.4rem;}
+  .fsub{font-size:.78rem;color:var(--muted);}
+  .flinks{display:flex;flex-direction:column;gap:.45rem;list-style:none;}
+  .flinks a{font-size:.78rem;color:var(--muted);text-decoration:none;transition:color .2s;}
+  .flinks a:hover{color:var(--gold);}
+
+  /* FADE IN */
+  .fi{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease;}
+  .fi.vis{opacity:1;transform:translateY(0);}
+</style>
+</head>
+<body>
+<div class="page">
+
+<nav>
+  <a href="https://czkelly1983.github.io/theunanswered/" class="nav-brand">The Unanswered</a>
+  <ul class="nav-links">
+    <li><a href="#verdict">The Verdict</a></li>
+    <li><a href="#findings">The Findings</a></li>
+    <li><a href="#data">All 35 Entries</a></li>
+    <li><a href="#method">The Method</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-kicker">The Sandbox · Eurovision 2026 · Vienna · May 16</div>
+  <p class="hero-verdict">We scored every entry without hearing a single note.</p>
+  <h1>
+    <span>Greece</span>
+    <span>came <em>first.</em></span>
+    <span>The bookmakers</span>
+    <span>have it <em>eighth.</em></span>
+  </h1>
+  <div class="hero-meta">
+    <div><span class="hero-meta-val">35</span><span class="hero-meta-label">Entries Scored</span></div>
+    <div><span class="hero-meta-val">10</span><span class="hero-meta-label">Criteria</span></div>
+    <div><span class="hero-meta-val">3</span><span class="hero-meta-label">Lens Frameworks</span></div>
+    <div><span class="hero-meta-val">31%</span><span class="hero-meta-label">Finland's Implied Odds</span></div>
+  </div>
+  <span class="scroll-hint">Read the analysis</span>
+</div>
+
+<!-- VOICE -->
+<div class="voice-section">
+  <div class="voice-inner">
+    <div>
+      <div class="voice-name">Chris Kelly</div>
+      <div class="voice-role">Fractional CPO &amp; CTO<br><a href="https://czkelly1983.github.io/theunanswered/" style="text-decoration:none;">The Unanswered</a></div>
+    </div>
+    <div class="voice-text">
+      <p>Everyone knows that Eurovision voting is geographically tied. It's an unspoken agreement that hangs over every result — the Balkan bloc, the Scandinavian sympathy vote, the diaspora surge. I wanted to understand just how much that actually mattered. Could a substandard song accumulate enough from being simply from the right location at the right moment? Or are there more important criteria hiding underneath the politics?</p>
+      <p>The real question underneath all of that is simpler: <strong>is Eurovision actually a song contest?</strong> Or is it a system the right country can game — hit the Loreen button, optimise for the instrument rather than the art, and collect your trophy.</p>
+      <p>So we built an instrument and applied it. Without hearing a single song. Just from what's been written about them, what's been performed at national finals, and what's happening in the world right now. It might get everything wrong. But it might also show that Eurovision is considerably less random than it looks — and that the market, for all its confidence, is missing something obvious.</p>
+      <p><em>Greece came first. The bookmakers have it eighth.</em></p>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- VERDICT -->
+<section id="verdict">
+  <div class="wrap">
+    <div class="eyebrow gold fi">The Verdict</div>
+    <h2 class="fi">Our <em>predicted</em> winner<br>and the full top ten.</h2>
+    <p class="lead fi">Ranked by Combined Lens score — the framework's best model of what actually wins Eurovision. No hearing required. The scores are built entirely from what's been written, what's been performed at national finals, and what the world looks like right now.</p>
+
+    <div class="podium-row fi">
+      <div class="podium-card p2">
+        <span class="pod-pos">2</span>
+        <div class="pod-country">Ukraine</div>
+        <div class="pod-song">LELÉKA — Ridnym</div>
+        <div class="pod-scores">
+          <div><span class="pod-sv">7.79</span><span class="pod-sl">Combined</span></div>
+          <div><span class="pod-sv">7.85</span><span class="pod-sl">Public</span></div>
+        </div>
+        <p class="pod-note">Maximum scores from both jury and public at national selection. Geo/diaspora potential of 9. The clearest undervalue in the field — the market has it at 3% implied. At that price, this is where the instrument most strongly disagrees with the bookmakers.</p>
+      </div>
+      <div class="podium-card p1">
+        <span class="pod-pos">1</span>
+        <div class="pod-country">Greece</div>
+        <div class="pod-song">Akylas — Ferto</div>
+        <div class="pod-scores">
+          <div><span class="pod-sv">7.85</span><span class="pod-sl">Combined</span></div>
+          <div><span class="pod-sv">7.82</span><span class="pod-sl">Public</span></div>
+        </div>
+        <p class="pod-note">Highest Combined score in the entire field. Won national final with maximum points from all three voting categories. Already topping Spotify Viral 50 in Greece and Cyprus. The "mama" bridge is the emotional pivot of the contest. The bookmakers have this eighth. That gap is the story of this page.</p>
+      </div>
+      <div class="podium-card p3">
+        <span class="pod-pos">3</span>
+        <div class="pod-country">Finland</div>
+        <div class="pod-song">Linda Lampenius &amp; Pete Parkkonen</div>
+        <div class="pod-scores">
+          <div><span class="pod-sv">7.57</span><span class="pod-sl">Combined</span></div>
+          <div><span class="pod-sv">7.87</span><span class="pod-sl">Jury</span></div>
+        </div>
+        <p class="pod-note">Legitimately great. 30+ page staging document, pyrotechnics, violin virtuoso. The market favourite at 31% implied — but only third by merit. The premium the market has paid here is the defining mispricing of this contest.</p>
+      </div>
+    </div>
+
+    <div class="eyebrow pink fi" style="margin-top:1rem;">Positions 4 &amp; 5</div>
+    <div class="ranked-list fi" id="top5List"></div>
+
+    <div class="eyebrow pink fi" style="margin-top:2.5rem;">Positions 6–10</div>
+    <div class="ranked-list fi" id="top10List"></div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- FINDINGS -->
+<section id="findings">
+  <div class="wrap">
+    <div class="eyebrow blue fi">The Findings</div>
+    <h2 class="fi">What the market<br>refuses to <em>see.</em></h2>
+
+    <div class="pq fi">
+      <p>"The top three by Combined Lens are Greece at 7.85, Ukraine at 7.79, and Finland at 7.57. The market prices them at 8%, 3%, and 31% respectively. That spread is the sharpest, most defensible finding in this analysis."</p>
+      <cite>The Instrument — Combined Lens Rankings</cite>
+    </div>
+
+    <div class="findings-grid">
+      <div class="fc fi">
+        <span class="ftag tu">🟢 Undervalued</span>
+        <div class="fcn">Greece</div><div class="fcs">Akylas — Ferto</div>
+        <div class="fnum">
+          <div><span class="fv fg">7.85</span><span class="fl">Combined</span></div>
+          <div><span class="fv fg">+4</span><span class="fl">Positions</span></div>
+          <div><span class="fv fr">8%</span><span class="fl">Market</span></div>
+        </div>
+        <p class="fb">Hyper-techno banger with genuine social commentary and an authentic artist backstory. Already viral regionally. The instrument's top score across the entire field — yet the bookmakers have it level with Australia. Four places above where the market has priced it.</p>
+      </div>
+      <div class="fc fi">
+        <span class="ftag tu">🟢 Undervalued</span>
+        <div class="fcn">Ukraine</div><div class="fcs">LELÉKA — Ridnym</div>
+        <div class="fnum">
+          <div><span class="fv fg">7.79</span><span class="fl">Combined</span></div>
+          <div><span class="fv fg">+8</span><span class="fl">Positions</span></div>
+          <div><span class="fv fr">3%</span><span class="fl">Market</span></div>
+        </div>
+        <p class="fb">Maximum jury and public scores at Vidbir. Bandura-led Ukrainian folk tradition. Geo/diaspora potential of 9. Eight positions above where the market has placed it. At 3% implied, this is the single largest rank gap between merit and market in the dataset.</p>
+      </div>
+      <div class="fc fi">
+        <span class="ftag to">🔴 Overvalued</span>
+        <div class="fcn">Finland</div><div class="fcs">Linda Lampenius &amp; Pete Parkkonen</div>
+        <div class="fnum">
+          <div><span class="fv fn">7.57</span><span class="fl">Combined</span></div>
+          <div><span class="fv fr">−2</span><span class="fl">Positions</span></div>
+          <div><span class="fv fr">31%</span><span class="fl">Market</span></div>
+        </div>
+        <p class="fb">Finland is not bad. Finland is just not this good. Critics note a weak hook and chorus-title disconnect. The market has it first; the instrument has it third. Two positions — closer than it looks — but the 31% implied probability implies near-certainty the scores don't support.</p>
+      </div>
+      <div class="fc fi">
+        <span class="ftag to">🔴 Overvalued</span>
+        <div class="fcn">Denmark</div><div class="fcs">Søren Torpegaard Lund</div>
+        <div class="fnum">
+          <div><span class="fv fn">6.93</span><span class="fl">Combined</span></div>
+          <div><span class="fv fr">−11</span><span class="fl">Positions</span></div>
+          <div><span class="fv fr">10%</span><span class="fl">Market</span></div>
+        </div>
+        <p class="fb">The biggest single overvaluation in this dataset. The instrument ranks Denmark 14th — a solid jury-bait ballad, low on originality, low on earworm. The market has it third. Eleven positions separate the bookmakers from the scores. That gap needs a better explanation than the music provides.</p>
+      </div>
+      <div class="fc fi">
+        <span class="ftag tw">⭐ Dark Horse</span>
+        <div class="fcn">Bulgaria</div><div class="fcs">DARA — Bangaranga</div>
+        <div class="fnum">
+          <div><span class="fv fg">7.21</span><span class="fl">Combined</span></div>
+          <div><span class="fv fg">+8</span><span class="fl">Positions</span></div>
+          <div><span class="fv fr">2%</span><span class="fl">Market</span></div>
+        </div>
+        <p class="fb">Balkan-Trap-Pop with sampled Kukeri bells — originality scored 9, the joint highest in the field. Returning country after a three-year absence. The ESC Insight predictive model has been moving this upward week on week. Eight positions above its market rank. The market is looking elsewhere.</p>
+      </div>
+      <div class="fc fi">
+        <span class="ftag to">🔴 Overvalued</span>
+        <div class="fcn">France</div><div class="fcs">Monroe — Regarde !</div>
+        <div class="fnum">
+          <div><span class="fv fn">7.13</span><span class="fl">Combined</span></div>
+          <div><span class="fv fr">−7</span><span class="fl">Positions</span></div>
+          <div><span class="fv fr">11%</span><span class="fl">Market</span></div>
+        </div>
+        <p class="fb">Jury lens of 7.52 is genuinely strong — elegant, polished, classic jury-bait. But the public lens drops to 6.69 because the earworm simply isn't there. If France wins, the televote will have been split and a jury-led result will have carried it. Seven positions above its merit rank.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- TABLE -->
+<section id="data">
+  <div class="wrap">
+    <div class="eyebrow pink fi">All 35 Entries</div>
+    <h2 class="fi">The complete <em>dataset.</em></h2>
+    <p class="lead fi">Every entry scored and ranked. Position Delta shows the gap between where the bookmakers rank an entry and where the instrument ranks it by merit. Positive = market has underestimated it. Negative = market has paid a premium it hasn't earned.</p>
+
+    <div class="dbox fi">
+      <h3>How to read the Position Delta</h3>
+      <p>Both the betting market (by implied win %) and the instrument (by Combined score) produce a ranking of all 35 entries. The delta is bookmaker rank minus merit rank. <strong style="color:var(--green);">Positive = Undervalued</strong> — ranked further down the field than the scores say it deserves. <strong style="color:var(--red);">Negative = Overvalued</strong> — placed higher than the merit justifies. Within ±3 positions = Solidly Priced. Tied entries share an average rank.</p>
+    </div>
+
+    <div class="legend-row fi">
+      <div class="li"><div class="sw sw1"></div><span>Predicted Winner (Greece)</span></div>
+      <div class="li"><div class="sw sw5"></div><span>Predicted Top 5</span></div>
+      <div class="li"><div class="sw sw10"></div><span>Predicted Top 10</span></div>
+    </div>
+
+    <div class="filter-row fi">
+      <button class="fbtn active" onclick="ft('all',this)">All 35</button>
+      <button class="fbtn" onclick="ft('under',this)">🟢 Undervalued</button>
+      <button class="fbtn" onclick="ft('over',this)">🔴 Overvalued</button>
+      <button class="fbtn" onclick="ft('fair',this)">Solidly Priced</button>
+      <button class="fbtn" onclick="ft('sf1',this)">Semi-Final 1</button>
+      <button class="fbtn" onclick="ft('sf2',this)">Semi-Final 2</button>
+      <button class="fbtn" onclick="ft('auto',this)">Auto-Qualifiers</button>
+    </div>
+    <input type="text" class="sinput" id="ts" placeholder="Search country or song…" oninput="st(this.value)">
+
+    <div class="twrap fi">
+      <table>
+        <thead>
+          <tr>
+            <th onclick="sort(0)">Country</th>
+            <th onclick="sort(1)">Song</th>
+            <th onclick="sort(2)">Mkt %</th>
+            <th onclick="sort(3)">Mkt Rank</th>
+            <th onclick="sort(4)">Jury</th>
+            <th onclick="sort(5)">Public</th>
+            <th onclick="sort(6)" class="sorted">Combined</th>
+            <th onclick="sort(7)">Merit Rank</th>
+            <th onclick="sort(8)">Pos. Delta</th>
+            <th>Signal</th>
+          </tr>
+        </thead>
+        <tbody id="tb"></tbody>
+      </table>
+    </div>
+    <p style="font-size:.72rem;color:var(--muted);margin-top:.9rem;">
+      Click any column header to sort. Position Delta = bookmaker rank minus merit rank (both out of 35).
+      <span style="color:var(--green);">Positive = Undervalued</span> ·
+      <span style="color:var(--red);">Negative = Overvalued</span> ·
+      Within ±3 = Solidly Priced. Row colours show our predicted top 10.
+    </p>
+
+    <!-- MOBILE VIEW -->
+    <div class="mob-legend fi">
+      <div class="li"><div class="sw sw1"></div><span>Predicted Winner</span></div>
+      <div class="li"><div class="sw sw5"></div><span>Top 5</span></div>
+      <div class="li"><div class="sw sw10"></div><span>Top 10</span></div>
+    </div>
+    <input type="text" class="mob-search fi" id="mobSearch" placeholder="Search country or song…" oninput="mobFilter()">
+    <div class="mob-filters fi" id="mobFilters">
+      <button class="mob-fbtn active" onclick="setMobFilter('all',this)">All 35</button>
+      <button class="mob-fbtn" onclick="setMobFilter('under',this)">🟢 Undervalued</button>
+      <button class="mob-fbtn" onclick="setMobFilter('over',this)">🔴 Overvalued</button>
+      <button class="mob-fbtn" onclick="setMobFilter('fair',this)">Solidly Priced</button>
+      <button class="mob-fbtn" onclick="setMobFilter('sf1',this)">Semi-Final 1</button>
+      <button class="mob-fbtn" onclick="setMobFilter('sf2',this)">Semi-Final 2</button>
+    </div>
+    <div class="mob-count fi" id="mobCount"></div>
+    <div class="mob-cards fi" id="mobCards"></div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- METHOD -->
+<section id="method">
+  <div class="wrap">
+    <div class="eyebrow gold fi">The Method</div>
+    <h2 class="fi">Build the instrument first.<br><em>Then</em> see what it shows you.</h2>
+    <p class="lead fi">The weights were fixed before a single entry was scored. Ten criteria, scored 1–10. Three differently weighted lenses. Every number is visible and every weight is arguable — that's the whole point.</p>
+    <div class="ig fi">
+      <div class="lc lj">
+        <div class="ln">01</div><div class="lt">Artist / Jury Lens</div>
+        <p class="ld">What professional juries reward. Vocal ceiling and originality carry the most weight. Geo/diaspora potential registers at just 3% — versus 15% in the public lens. That structural gap is where the two systems most fundamentally disagree.</p>
+        <div style="margin-top:1.2rem;">
+          <div class="wr"><span>Vocal Ceiling</span><span>20%</span></div>
+          <div class="wr"><span>Originality</span><span>18%</span></div>
+          <div class="wr"><span>Production Quality</span><span>15%</span></div>
+          <div class="wr"><span>Jury Signals</span><span>12%</span></div>
+          <div class="wr"><span>Emotional Resonance</span><span>10%</span></div>
+          <div class="wr"><span>Staging Ambition</span><span>8%</span></div>
+          <div class="wr"><span>+ 4 others</span><span>17%</span></div>
+        </div>
+      </div>
+      <div class="lc lp">
+        <div class="ln">02</div><div class="lt">Public / Televote Lens</div>
+        <p class="ld">What casual viewers and diaspora communities actually vote for. Earworm and emotional resonance dominate. Geo/diaspora potential at 15% here versus 3% in the jury lens — the most structurally honest acknowledgement in this whole framework that Eurovision is not purely a song contest.</p>
+        <div style="margin-top:1.2rem;">
+          <div class="wr"><span>Earworm Strength</span><span>20%</span></div>
+          <div class="wr"><span>Emotional Resonance</span><span>18%</span></div>
+          <div class="wr"><span>Staging Ambition</span><span>15%</span></div>
+          <div class="wr"><span>Geo/Diaspora Potential</span><span>15%</span></div>
+          <div class="wr"><span>Vocal Ceiling</span><span>10%</span></div>
+          <div class="wr"><span>+ 5 others</span><span>22%</span></div>
+        </div>
+      </div>
+      <div class="lc lw">
+        <div class="ln">03</div><div class="lt">Combined / Win Lens</div>
+        <p class="ld">The instrument's best model of what actually wins — a hybrid that rewards entries capable of performing across both voting systems. This is the primary ranking lens. An entry that dominates on jury but collapses on public, or vice versa, will not top this ranking.</p>
+        <div style="margin-top:1.2rem;">
+          <div class="wr"><span>Earworm Strength</span><span>15%</span></div>
+          <div class="wr"><span>Vocal Ceiling</span><span>14%</span></div>
+          <div class="wr"><span>Emotional Resonance</span><span>12%</span></div>
+          <div class="wr"><span>Staging Ambition</span><span>12%</span></div>
+          <div class="wr"><span>Production Quality</span><span>10%</span></div>
+          <div class="wr"><span>+ 5 others</span><span>37%</span></div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:3rem;">
+      <div class="eyebrow blue fi">10 Criteria · Scored 1–10</div>
+      <div class="cg fi">
+        <div class="crit"><span class="cn">C1</span><div class="ct"><strong>Musical Originality</strong>How distinctive vs the whole field?</div></div>
+        <div class="crit"><span class="cn">C2</span><div class="ct"><strong>Vocal Ceiling</strong>Best possible live vocal performance?</div></div>
+        <div class="crit"><span class="cn">C3</span><div class="ct"><strong>Production Quality</strong>Studio and staging production value?</div></div>
+        <div class="crit"><span class="cn">C4</span><div class="ct"><strong>Earworm Strength</strong>Does the hook stick after one listen?</div></div>
+        <div class="crit"><span class="cn">C5</span><div class="ct"><strong>Emotional Resonance</strong>Does it land in the chest?</div></div>
+        <div class="crit"><span class="cn">C6</span><div class="ct"><strong>Staging Ambition</strong>Is the live concept genuinely memorable?</div></div>
+        <div class="crit"><span class="cn">C7</span><div class="ct"><strong>Jury Signals</strong>Historic jury affinity for this style?</div></div>
+        <div class="crit"><span class="cn">C8</span><div class="ct"><strong>Geo/Diaspora Potential</strong>Reliable bloc or diaspora vote ceiling?</div></div>
+        <div class="crit"><span class="cn">C9</span><div class="ct"><strong>Hype Sustainability</strong>Will momentum hold to finals night?</div></div>
+        <div class="crit"><span class="cn">C10</span><div class="ct"><strong>Winner Pattern Fit</strong>Does it match the profile of recent winners?</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- TRANSPARENCY -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow gold fi">Transparency</div>
+    <h2 class="fi">What this is.<br>What it <em>isn't.</em></h2>
+    <p class="lead fi">The same note that runs on every Sandbox project. The instrument was built before any scores were applied. These are not predictions. They are a structured opinion, made visible and arguable.</p>
+    <div class="tg fi">
+      <div class="tc">
+        <h3>What the scores are</h3>
+        <p>Structured estimates built from publicly available information — national final results, critical reception, fan community reaction, streaming data, and betting market signals, cross-referenced against each other. Every score is arguable. The methodology is there to be challenged.</p>
+      </div>
+      <div class="tc">
+        <h3>What the scores aren't</h3>
+        <p>Predictions. Empirical data. Live performance evaluations — staging won't be fully visible until Vienna. The geo/diaspora scores are based on historical voting patterns. Israel's score of 9 reflects documented government advertising campaigns from prior years, not a value judgement on the entry.</p>
+      </div>
+      <div class="tc">
+        <h3>Where this scoring disagrees with others</h3>
+        <p>Greece was upgraded most significantly from an earlier pass: earworm to 9, staging ambition to 9, emotional resonance to 8 — all research-justified after reviewing national final performances and fan response. Poland was downgraded: originality and earworm both reduced after multiple reviewers called it technically strong but generically forgettable.</p>
+      </div>
+      <div class="tc">
+        <h3>Come back on 17 May</h3>
+        <p>This page will be updated after the Grand Final with actual results against all three lenses. Every predicted position checked against reality. Every delta named. The question the instrument was built to answer publicly: how right were we, and where did the framework fail?</p>
+      </div>
+    </div>
+    <p style="margin-top:2rem;font-size:.83rem;color:var(--muted);">
+      Built in conversation with <a href="https://anthropic.com" style="color:var(--muted);text-decoration:underline;">Claude</a> by
+      <a href="https://czkelly1983.github.io/theunanswered/" style="color:var(--gold);text-decoration:none;">The Unanswered</a>.
+      Part of the Sandbox alongside <a href="https://czkelly1983.github.io/noguiltypleasures/" style="color:var(--muted);text-decoration:underline;">No Guilty Pleasures</a> and <a href="https://czkelly1983.github.io/No-Soft-Opinions/" style="color:var(--muted);text-decoration:underline;">No Soft Opinions</a>.
+      Not an Anthropic product. Not sponsored by any bookmaker.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="fb2">The Unanswered</div>
+    <div class="fsub">Eurovision 2026 · The Sandbox · Vienna</div>
+  </div>
+  <ul class="flinks">
+    <li><a href="https://czkelly1983.github.io/theunanswered/">← Back to The Unanswered</a></li>
+    <li><a href="https://czkelly1983.github.io/noguiltypleasures/">No Guilty Pleasures — British Music</a></li>
+    <li><a href="https://czkelly1983.github.io/No-Soft-Opinions/">No Soft Opinions — Cinema</a></li>
+    <li><a href="https://twitter.com/cjk_1983">@cjk_1983 on X / Twitter</a></li>
+  </ul>
+</footer>
+
+</div>
+
+<script>
+const entries=[
+  {country:"Albania",        song:"Alis — Nân",                                     mkt:1,  jury:6.79,pub:6.15,combined:6.38,sf:"sf2", auto:false},
+  {country:"Armenia",        song:"SIMÓN — Paloma Rumba",                            mkt:1,  jury:6.79,pub:6.67,combined:6.69,sf:"sf2", auto:false},
+  {country:"Australia",      song:"Delta Goodrem — Eclipse",                         mkt:8,  jury:7.84,pub:7.03,combined:7.44,sf:"sf2", auto:false},
+  {country:"Austria",        song:"COSMÓ — Tanzschein",                              mkt:2,  jury:7.17,pub:6.78,combined:7.00,sf:"auto",auto:true },
+  {country:"Azerbaijan",     song:"JIVA — Just Go",                                  mkt:1,  jury:6.13,pub:6.11,combined:6.11,sf:"sf2", auto:false},
+  {country:"Belgium",        song:"ESSYLA — Dancing on the Ice",                     mkt:1,  jury:6.62,pub:5.99,combined:6.24,sf:"sf1", auto:false},
+  {country:"Bulgaria",       song:"DARA — Bangaranga",                               mkt:2,  jury:7.29,pub:7.22,combined:7.21,sf:"sf2", auto:false},
+  {country:"Croatia",        song:"LELEK — Andromeda",                               mkt:2,  jury:7.41,pub:7.06,combined:7.19,sf:"sf1", auto:false},
+  {country:"Cyprus",         song:"Antigoni — JALLA",                                mkt:2,  jury:6.93,pub:7.17,combined:6.98,sf:"sf2", auto:false},
+  {country:"Czechia",        song:"Daniel Žižka — CROSSROADS",                      mkt:2,  jury:6.45,pub:5.67,combined:6.00,sf:"sf2", auto:false},
+  {country:"Denmark",        song:"Søren Torpegaard Lund — Før vi går hjem",         mkt:10, jury:7.11,pub:6.72,combined:6.93,sf:"sf2", auto:false},
+  {country:"Estonia",        song:"Vanilla Ninja — Too Epic To Be True",             mkt:1,  jury:6.82,pub:6.36,combined:6.59,sf:"sf1", auto:false},
+  {country:"Finland",        song:"Linda Lampenius & Pete Parkkonen — Liekinheitin", mkt:31, jury:7.87,pub:7.15,combined:7.57,sf:"sf1", auto:false},
+  {country:"France",         song:"Monroe — Regarde !",                              mkt:11, jury:7.52,pub:6.69,combined:7.13,sf:"auto",auto:true },
+  {country:"Georgia",        song:"Bzikebi — On Replay",                             mkt:1,  jury:6.05,pub:6.06,combined:6.05,sf:"sf1", auto:false},
+  {country:"Germany",        song:"Sarah Engels — Fire",                              mkt:1,  jury:5.80,pub:5.34,combined:5.55,sf:"auto",auto:true },
+  {country:"Greece",         song:"Akylas — Ferto",                                  mkt:8,  jury:8.02,pub:7.82,combined:7.85,sf:"sf1", auto:false},
+  {country:"Israel",         song:"Noam Bettan — Michelle",                          mkt:5,  jury:6.82,pub:7.21,combined:6.97,sf:"sf1", auto:false},
+  {country:"Italy",          song:"Sal Da Vinci — Per sempre sì",                    mkt:3,  jury:6.68,pub:6.15,combined:6.39,sf:"auto",auto:true },
+  {country:"Latvia",         song:"Atvara — Ēnā",                                    mkt:1,  jury:6.94,pub:6.25,combined:6.53,sf:"sf1", auto:false},
+  {country:"Lithuania",      song:"Lion Ceccah — Sólo Quiero Más",                  mkt:1,  jury:6.72,pub:6.49,combined:6.57,sf:"sf1", auto:false},
+  {country:"Luxembourg",     song:"Eva Marija — Mother Nature",                      mkt:1,  jury:7.11,pub:6.46,combined:6.74,sf:"sf2", auto:false},
+  {country:"Malta",          song:"AIDAN — Bella",                                   mkt:1,  jury:6.34,pub:6.20,combined:6.25,sf:"sf2", auto:false},
+  {country:"Moldova",        song:"Satoshi — Viva, Moldova!",                        mkt:1,  jury:6.91,pub:7.12,combined:6.95,sf:"sf1", auto:false},
+  {country:"Montenegro",     song:"Tamara Živković — Nova Zora",                     mkt:1,  jury:6.96,pub:6.31,combined:6.57,sf:"sf1", auto:false},
+  {country:"Norway",         song:"JONAS LOVV — YA YA YA",                          mkt:2,  jury:6.68,pub:6.70,combined:6.74,sf:"sf2", auto:false},
+  {country:"Poland",         song:"ALICJA — Pray",                                  mkt:2,  jury:7.29,pub:6.65,combined:6.92,sf:"sf2", auto:false},
+  {country:"Portugal",       song:"Bandidos do Cante — Rosa",                        mkt:1,  jury:7.00,pub:5.96,combined:6.38,sf:"sf1", auto:false},
+  {country:"Romania",        song:"Alexandra Căpitănescu — Choke Me",                mkt:4,  jury:7.45,pub:7.19,combined:7.24,sf:"sf2", auto:false},
+  {country:"San Marino",     song:"SENHIT — Superstar",                              mkt:1,  jury:6.94,pub:6.74,combined:6.86,sf:"sf1", auto:false},
+  {country:"Serbia",         song:"LAVINA — Kraj Mene",                              mkt:1,  jury:7.06,pub:6.76,combined:6.84,sf:"sf1", auto:false},
+  {country:"Sweden",         song:"FELICIA — My System",                             mkt:4,  jury:7.38,pub:6.91,combined:7.20,sf:"sf1", auto:false},
+  {country:"Switzerland",    song:"Veronica Fusaro — Alice",                         mkt:1,  jury:7.07,pub:6.30,combined:6.63,sf:"sf2", auto:false},
+  {country:"Ukraine",        song:"LELÉKA — Ridnym",                                 mkt:3,  jury:7.89,pub:7.85,combined:7.79,sf:"sf2", auto:false},
+  {country:"United Kingdom", song:"LOOK MUM NO COMPUTER — Eins, Zwei, Drei",        mkt:1,  jury:5.95,pub:5.14,combined:5.45,sf:"auto",auto:true },
+];
+
+function avgRanks(arr,kfn){
+  const s=[...arr].sort((a,b)=>kfn(b)-kfn(a));
+  const r={};let i=0;
+  while(i<s.length){let j=i;while(j<s.length&&kfn(s[j])===kfn(s[i]))j++;const avg=(i+1+j)/2;for(let k=i;k<j;k++)r[s[k].country]=avg;i=j;}
+  return r;
+}
+const mr=avgRanks(entries,e=>e.mkt);
+const cr=avgRanks(entries,e=>e.combined);
+entries.forEach(e=>{
+  e.mktRank=mr[e.country];e.meritRank=cr[e.country];
+  e.delta=Math.round(e.mktRank-e.meritRank);
+  e.signal=e.delta>3?'under':e.delta<-3?'over':'fair';
+});
+
+// Top 10 by merit
+const bm=[...entries].sort((a,b)=>b.combined-a.combined);
+const t10=new Set(bm.slice(0,10).map(e=>e.country));
+const t5=new Set(bm.slice(0,5).map(e=>e.country));
+
+function buildList(items,start,id,cls){
+  const el=document.getElementById(id);
+  if(!el)return;
+  el.innerHTML=items.map((e,i)=>`
+    <div class="ranked-item ${cls}">
+      <div class="rn">${start+i}</div>
+      <div><div class="rc">${e.country}</div><div class="rs">${e.song}</div></div>
+      <div class="rv">${e.combined.toFixed(2)}</div>
+    </div>`).join('');
+}
+buildList(bm.slice(3,5),4,'top5List','t5');
+buildList(bm.slice(5,10),6,'top10List','t10');
+
+let cf='all',sc=6,sa=false,sq='';
+
+function rc2(e){
+  if(e.country==='Greece')return'rw';
+  if(t5.has(e.country))return'r5';
+  if(t10.has(e.country))return'r10';
+  return'';
+}
+function sh(s){
+  if(s==='under')return'<span class="pill pu">Undervalued</span>';
+  if(s==='over') return'<span class="pill po">Overvalued</span>';
+  return'<span class="pill pf">Solidly Priced</span>';
+}
+function dh(e){
+  const d=e.delta,sign=d>0?'+':'',cls=d>3?'dpos':d<-3?'dneg':'';
+  const txt=d>3?`${sign}${d} places`:d<-3?`${d} places`:`${sign}${d}`;
+  return`<span class="dc ${cls}">${txt}</span>`;
+}
+function render(){
+  let data=[...entries];
+  if(cf==='under')data=data.filter(e=>e.signal==='under');
+  else if(cf==='over')data=data.filter(e=>e.signal==='over');
+  else if(cf==='fair')data=data.filter(e=>e.signal==='fair');
+  else if(cf==='sf1')data=data.filter(e=>e.sf==='sf1');
+  else if(cf==='sf2')data=data.filter(e=>e.sf==='sf2');
+  else if(cf==='auto')data=data.filter(e=>e.auto);
+  if(sq){const q=sq.toLowerCase();data=data.filter(e=>e.country.toLowerCase().includes(q)||e.song.toLowerCase().includes(q));}
+  const cols=[[0,'country'],[1,'song'],[2,'mkt'],[3,'mktRank'],[4,'jury'],[5,'pub'],[6,'combined'],[7,'meritRank'],[8,'delta']];
+  const[,k]=cols[sc]||[0,'combined'];
+  data.sort((a,b)=>{
+    const av=a[k],bv=b[k];
+    if(typeof av==='string')return sa?av.localeCompare(bv):bv.localeCompare(av);
+    return sa?av-bv:bv-av;
+  });
+  document.getElementById('tb').innerHTML=data.map(e=>`
+    <tr class="${rc2(e)}">
+      <td class="cc">${e.country}</td>
+      <td class="sc">${e.song}</td>
+      <td>${e.mkt}%</td>
+      <td style="color:var(--muted)">#${Math.round(e.mktRank)}</td>
+      <td class="vc">${e.jury.toFixed(2)}</td>
+      <td class="vc">${e.pub.toFixed(2)}</td>
+      <td class="vc" style="color:var(--gold);font-weight:500">${e.combined.toFixed(2)}</td>
+      <td style="color:var(--muted)">#${Math.round(e.meritRank)}</td>
+      <td>${dh(e)}</td>
+      <td>${sh(e.signal)}</td>
+    </tr>`).join('');
+}
+function sort(c){
+  if(sc===c)sa=!sa;else{sc=c;sa=false;}
+  document.querySelectorAll('th').forEach((t,i)=>t.classList.toggle('sorted',i===c));
+  render();
+}
+function ft(f,btn){
+  cf=f;
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');render();
+}
+function st(v){sq=v;render();}
+
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:0.08});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+
+render();
+
+// ── MOBILE CARDS ──
+let mobF='all', mobQ='';
+
+function mobCardClass(e){
+  if(e.country==='Greece') return 'mc-winner';
+  if(t5.has(e.country))   return 'mc-top5';
+  if(t10.has(e.country))  return 'mc-top10';
+  return '';
+}
+
+function mobDeltaTxt(e){
+  const d=e.delta;
+  if(d===0) return{txt:'On the money',cls:''};
+  if(d>3)   return{txt:`+${d} places above market`,cls:'dpos'};
+  if(d<-3)  return{txt:`${Math.abs(d)} places below merit`,cls:'dneg'};
+  return{txt:`Within ${Math.abs(d)} of market`,cls:''};
+}
+
+function renderMobCards(){
+  const fullOrder=[...entries].sort((a,b)=>b.combined-a.combined);
+  const meritPos={};
+  fullOrder.forEach((e,i)=>meritPos[e.country]=i+1);
+
+  let data=[...fullOrder];
+  if(mobF==='under') data=data.filter(e=>e.signal==='under');
+  else if(mobF==='over')  data=data.filter(e=>e.signal==='over');
+  else if(mobF==='fair')  data=data.filter(e=>e.signal==='fair');
+  else if(mobF==='sf1')   data=data.filter(e=>e.sf==='sf1');
+  else if(mobF==='sf2')   data=data.filter(e=>e.sf==='sf2');
+  if(mobQ){const q=mobQ.toLowerCase();data=data.filter(e=>e.country.toLowerCase().includes(q)||e.song.toLowerCase().includes(q));}
+
+  const countEl=document.getElementById('mobCount');
+  if(countEl) countEl.textContent=`Showing ${data.length} of 35 entries · sorted by merit score`;
+
+  const container=document.getElementById('mobCards');
+  if(!container) return;
+
+  container.innerHTML=data.map(e=>{
+    const pos=meritPos[e.country];
+    const cc=mobCardClass(e);
+    const sigLabel=e.signal==='under'?'🟢 Undervalued':e.signal==='over'?'🔴 Overvalued':'Solidly Priced';
+    const sigCls=e.signal==='under'?'pu':e.signal==='over'?'po':'pf';
+    const {txt:dtxt,cls:dcls}=mobDeltaTxt(e);
+    const cid='mc-'+e.country.replace(/\s+/g,'-');
+    return`
+    <div class="mob-card ${cc}" id="${cid}">
+      <div class="mob-card-head" onclick="this.closest('.mob-card').classList.toggle('open')">
+        <div class="mob-rank">${pos}</div>
+        <div class="mob-main">
+          <div class="mob-country">${e.country}</div>
+          <div class="mob-song">${e.song}</div>
+        </div>
+        <div class="mob-head-right">
+          <span class="mob-combined">${e.combined.toFixed(2)}</span>
+          <span class="mob-chevron">▼ MORE</span>
+        </div>
+      </div>
+      <div class="mob-card-body">
+        <div class="mob-signal-row">
+          <span class="pill ${sigCls}">${sigLabel}</span>
+          <span style="font-size:.72rem;color:var(--muted)">Mkt: ${e.mkt}% implied</span>
+        </div>
+        <div class="mob-stats">
+          <div class="mob-stat">
+            <span class="mob-stat-val" style="color:var(--pink)">${e.jury.toFixed(2)}</span>
+            <span class="mob-stat-label">Jury</span>
+          </div>
+          <div class="mob-stat">
+            <span class="mob-stat-val" style="color:var(--blue)">${e.pub.toFixed(2)}</span>
+            <span class="mob-stat-label">Public</span>
+          </div>
+          <div class="mob-stat">
+            <span class="mob-stat-val" style="color:var(--gold)">${e.combined.toFixed(2)}</span>
+            <span class="mob-stat-label">Combined</span>
+          </div>
+        </div>
+        <div class="mob-delta-row">
+          <span class="mob-delta-label">vs Bookmakers</span>
+          <span class="mob-delta-val ${dcls}">${dtxt}</span>
+        </div>
+        <div class="mob-ranks">
+          <span>Bookie rank: #${Math.round(e.mktRank)}</span>
+          <span>Our rank: #${Math.round(e.meritRank)}</span>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function setMobFilter(f,btn){
+  mobF=f;
+  document.querySelectorAll('.mob-fbtn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMobCards();
+}
+
+function mobFilter(){
+  mobQ=document.getElementById('mobSearch').value;
+  renderMobCards();
+}
+
+renderMobCards();
+</script>
+</body>
+</html>
