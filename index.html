@@ -136,54 +136,80 @@
   .dbox h3{font-family:'DM Serif Display',serif;font-size:1.35rem;margin-bottom:.9rem;}
   .dbox p{color:var(--muted);font-size:.92rem;line-height:1.75;max-width:680px;}
 
-  /* TABLE */
+  /* FILTER / SEARCH CONTROLS */
   .filter-row{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.2rem;}
   .fbtn{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:.38rem .95rem;border-radius:6px;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:.72rem;cursor:pointer;transition:all .2s;}
   .fbtn:hover,.fbtn.active{background:rgba(255,215,0,0.09);border-color:rgba(255,215,0,0.35);color:var(--gold);}
-  .sinput{background:var(--card);border:1px solid var(--border);border-radius:7px;color:var(--off-white);font-family:'DM Sans',sans-serif;font-size:.88rem;padding:.6rem 1rem;width:210px;outline:none;transition:border-color .2s;margin-bottom:1rem;display:block;}
+  .sinput{background:var(--card);border:1px solid var(--border);border-radius:7px;color:var(--off-white);font-family:'DM Sans',sans-serif;font-size:.88rem;padding:.6rem 1rem;width:260px;outline:none;transition:border-color .2s;margin-bottom:.6rem;display:block;}
   .sinput:focus{border-color:rgba(255,215,0,0.35);}
   .sinput::placeholder{color:var(--muted);}
-  /* Wider wrap for the data section so the table breathes */
-  #data .wrap{max-width:1160px;}
-  .twrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);}
-  table{width:100%;border-collapse:collapse;font-size:.8rem;table-layout:fixed;}
-  col.col-country{width:130px;}
-  col.col-song{width:auto;}
-  col.col-mkt{width:60px;}
-  col.col-mktrank{width:72px;}
-  col.col-jury{width:60px;}
-  col.col-pub{width:60px;}
-  col.col-combined{width:72px;}
-  col.col-meritrank{width:72px;}
-  col.col-delta{width:100px;}
-  col.col-signal{width:110px;}
-  col.col-watch{width:54px;}
-  thead tr{background:rgba(255,255,255,0.04);border-bottom:1px solid var(--border);}
-  th{padding:.9rem 1rem;text-align:left;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:.68rem;color:var(--muted);white-space:nowrap;cursor:pointer;user-select:none;transition:color .2s;overflow:hidden;text-overflow:ellipsis;}
-  th:hover{color:var(--gold);}th.sorted{color:var(--gold);}
-  td{padding:.75rem 1rem;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-  td.sc{white-space:normal;word-break:break-word;line-height:1.4;}
-  tr:last-child td{border-bottom:none;}
 
-  /* Row colour tiers */
-  tr.rw td{background:linear-gradient(90deg,rgba(255,215,0,0.13),rgba(255,215,0,0.04));}
-  tr.r5 td{background:linear-gradient(90deg,rgba(0,200,255,0.08),rgba(0,200,255,0.02));}
-  tr.r10 td{background:linear-gradient(90deg,rgba(255,45,120,0.06),rgba(255,45,120,0.01));}
-  tr.rw:hover td{background:rgba(255,215,0,0.17);}
-  tr.r5:hover td{background:rgba(0,200,255,0.12);}
-  tr.r10:hover td{background:rgba(255,45,120,0.09);}
-  tr:not(.rw):not(.r5):not(.r10):hover td{background:rgba(255,255,255,0.025);}
+  /* SORT BAR */
+  .sort-bar{display:flex;align-items:center;gap:.5rem;flex-wrap:wrap;margin-bottom:1.1rem;font-size:.7rem;}
+  .sort-bar span{color:var(--muted);font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;}
+  .sbtn{background:var(--card);border:1px solid var(--border);color:var(--muted);padding:.28rem .75rem;border-radius:5px;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:.68rem;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.3rem;}
+  .sbtn:hover{color:var(--gold);border-color:rgba(255,215,0,0.3);}
+  .sbtn.sactive{background:rgba(255,215,0,0.09);border-color:rgba(255,215,0,0.4);color:var(--gold);}
 
-  .cc{font-weight:500;}
-  .sc{color:var(--muted);font-size:.75rem;}
-  .vc{font-family:'DM Serif Display',serif;font-size:.95rem;}
-  .dc{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.04em;}
+  /* ENTRY LIST */
+  .entry-list{display:flex;flex-direction:column;gap:.45rem;}
+  .ec-count{font-size:.75rem;color:var(--muted);margin-bottom:.8rem;}
+
+  /* Card shell */
+  .entry-card{border-radius:11px;border:1px solid var(--border);overflow:hidden;transition:border-color .22s;}
+  .entry-card:hover{border-color:var(--bh);}
+  .entry-card.ec-winner{border-color:rgba(255,215,0,0.28);background:linear-gradient(135deg,rgba(255,215,0,0.065),rgba(255,255,255,0.018));}
+  .entry-card.ec-top5  {border-color:rgba(0,200,255,0.2); background:linear-gradient(135deg,rgba(0,200,255,0.045),rgba(255,255,255,0.018));}
+  .entry-card.ec-top10 {border-color:rgba(255,45,120,0.17);background:linear-gradient(135deg,rgba(255,45,120,0.03),rgba(255,255,255,0.018));}
+
+  /* Summary row — always visible, 7-column grid */
+  .ec-head{
+    display:grid;
+    grid-template-columns: 2.6rem 1fr 68px 68px 78px 128px 44px;
+    align-items:center;
+    padding:.8rem 1.2rem;cursor:pointer;user-select:none;gap:0;
+  }
+  @media(max-width:600px){
+    .ec-head{grid-template-columns:2.2rem 1fr 60px 96px 36px;}
+  }
+
+  .ec-rank{font-family:'Bebas Neue',sans-serif;font-size:1.35rem;line-height:1;color:var(--muted);text-align:center;}
+  .ec-winner .ec-rank{color:var(--gold);}
+  .ec-top5   .ec-rank{color:var(--blue);}
+  .ec-top10  .ec-rank{color:var(--pink);}
+
+  .ec-name{padding:0 .9rem;}
+  .ec-country-txt{font-weight:500;font-size:.95rem;margin-bottom:.08rem;}
+  .ec-song-hint{font-size:.7rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;}
+
+  .ec-col{display:flex;flex-direction:column;align-items:center;padding:0 .25rem;}
+  .ec-val{font-family:'DM Serif Display',serif;font-size:1rem;line-height:1.2;}
+  .ec-lbl{font-size:.57rem;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin-top:.12rem;}
+
+  .ec-dv{font-family:'Bebas Neue',sans-serif;font-size:.92rem;letter-spacing:.04em;line-height:1.2;}
   .dpos{color:var(--green);}.dneg{color:var(--red);}
+
+  .ec-sig{display:flex;align-items:center;justify-content:center;padding:0 .3rem;}
+  .ec-chev{font-size:.58rem;color:var(--muted);font-family:'Bebas Neue',sans-serif;letter-spacing:.05em;text-align:center;transition:transform .22s;line-height:1;}
+  .entry-card.open .ec-chev{transform:rotate(180deg);}
+
+  /* Expanded body */
+  .ec-body{display:none;border-top:1px solid var(--border);padding:1rem 1.2rem 1.2rem;}
+  .entry-card.open .ec-body{display:block;}
+  .ec-song-full{font-size:.82rem;color:var(--muted);margin-bottom:.9rem;}
+  .ec-song-full strong{color:var(--off-white);font-weight:500;}
+  .ec-detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.6rem;margin-bottom:1rem;}
+  .ec-stat{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:.6rem .75rem;text-align:center;}
+  .ec-sv{font-family:'DM Serif Display',serif;font-size:1.2rem;line-height:1;display:block;}
+  .ec-sl{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:.18rem;display:block;}
+
+  /* Pills */
   .pill{display:inline-block;padding:.22rem .58rem;border-radius:4px;font-size:.66rem;font-family:'Bebas Neue',sans-serif;letter-spacing:.08em;}
   .pu{background:var(--green-dim);color:var(--green);border:1px solid var(--green-b);}
   .po{background:var(--red-dim);color:var(--red);border:1px solid var(--red-b);}
   .pf{background:rgba(155,143,170,.1);color:var(--muted);border:1px solid rgba(155,143,170,.2);}
 
+  /* Legend */
   .legend-row{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:.9rem;font-size:.75rem;}
   .li{display:flex;align-items:center;gap:.5rem;}
   .sw{width:12px;height:12px;border-radius:2px;flex-shrink:0;}
@@ -215,139 +241,37 @@
 
   /* MOBILE OVERRIDES */
   @media(max-width:640px){
-    /* Hero tightening */
     .hero{padding:7rem 1.25rem 4rem;min-height:auto;}
     .hero h1{font-size:clamp(2.6rem,13vw,4rem);margin-bottom:1.5rem;}
     .hero-meta{gap:1.5rem;padding-top:1.5rem;}
     .hero-meta-val{font-size:2rem;}
     .scroll-hint{display:none;}
-
-    /* Voice section */
     .voice-inner{padding:2.5rem 1.25rem;}
-
-    /* Podium: stack vertically, winner on top */
-    .podium-row{
-      display:flex; flex-direction:column; gap:1rem;
-    }
-    /* Reorder: gold (p1) first on mobile */
-    .podium-row .p1{order:1;}
-    .podium-row .p2{order:2;}
-    .podium-row .p3{order:3;}
-
-    /* Findings: single column */
+    .podium-row{display:flex;flex-direction:column;gap:1rem;}
+    .podium-row .p1{order:1;}.podium-row .p2{order:2;}.podium-row .p3{order:3;}
     .findings-grid{grid-template-columns:1fr;}
-
-    /* Pull quote smaller */
     .pq p{font-size:1rem;}
-
-    /* Hide desktop table, show mobile cards */
-    .twrap{display:none;}
-    .legend-row{display:none;}
-    .filter-row{display:none;}
     .sinput{width:100%;}
-    .mob-cards{display:flex;flex-direction:column;gap:.75rem;}
-
-    /* Delta box */
     .dbox{padding:1.5rem;}
-
-    /* Method grid single col */
     .ig{grid-template-columns:1fr;}
     .cg{grid-template-columns:1fr 1fr;}
+    /* On mobile, hide the middle columns in the summary row */
+    .ec-head{grid-template-columns:2.2rem 1fr 60px 96px 36px;}
+    .ec-col-mkt,.ec-col-merit{display:none;}
   }
 
-  @media(min-width:641px){
-    .mob-cards{display:none;}
-  }
-
-  /* MOBILE ENTRY CARDS */
-  .mob-card{
-    background:var(--card); border:1px solid var(--border);
-    border-radius:12px; overflow:hidden;
-    transition:border-color .2s;
-  }
-  .mob-card.mc-winner{border-color:rgba(255,215,0,0.3); background:linear-gradient(135deg,rgba(255,215,0,0.07),var(--card));}
-  .mob-card.mc-top5  {border-color:rgba(0,200,255,0.2);  background:linear-gradient(135deg,rgba(0,200,255,0.05),var(--card));}
-  .mob-card.mc-top10 {border-color:rgba(255,45,120,0.2); background:linear-gradient(135deg,rgba(255,45,120,0.04),var(--card));}
-
-  .mob-card-head{
-    display:grid; grid-template-columns:2.2rem 1fr auto;
-    align-items:center; gap:.9rem;
-    padding:1rem 1.1rem; cursor:pointer;
-    user-select:none;
-  }
-  .mob-rank{
-    font-family:'Bebas Neue',sans-serif; font-size:1.5rem;
-    line-height:1; color:var(--muted); text-align:center;
-  }
-  .mc-winner .mob-rank{color:var(--gold);}
-  .mc-top5   .mob-rank{color:var(--blue);}
-  .mc-top10  .mob-rank{color:var(--pink);}
-
-  .mob-main{}
-  .mob-country{font-weight:500; font-size:.95rem; margin-bottom:.1rem;}
-  .mob-song{font-size:.72rem; color:var(--muted); line-height:1.3;}
-
-  .mob-head-right{display:flex;flex-direction:column;align-items:flex-end;gap:.3rem;}
-  .mob-combined{font-family:'DM Serif Display',serif;font-size:1.1rem;color:var(--gold);}
-  .mob-chevron{font-size:.65rem;color:var(--muted);transition:transform .25s;letter-spacing:.05em;font-family:'Bebas Neue',sans-serif;}
-
-  .mob-card.open .mob-chevron{transform:rotate(180deg);}
-
-  .mob-card-body{
-    display:none; padding:0 1.1rem 1.1rem;
-    border-top:1px solid var(--border); margin-top:0;
-  }
-  .mob-card.open .mob-card-body{display:block;}
-
-  .mob-signal-row{padding:.7rem 0 .9rem; display:flex; gap:.6rem; align-items:center; flex-wrap:wrap;}
-
-  .mob-stats{
-    display:grid; grid-template-columns:1fr 1fr 1fr;
-    gap:.5rem; margin-bottom:.9rem;
-  }
-  .mob-stat{
-    background:rgba(255,255,255,0.04); border:1px solid var(--border);
-    border-radius:8px; padding:.6rem .7rem; text-align:center;
-  }
-  .mob-stat-val{font-family:'Bebas Neue',sans-serif;font-size:1.2rem;line-height:1;display:block;color:var(--off-white);}
-  .mob-stat-label{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);}
-
-  .mob-delta-row{
-    display:flex; justify-content:space-between; align-items:center;
-    background:rgba(255,255,255,0.03); border:1px solid var(--border);
-    border-radius:8px; padding:.65rem .9rem; margin-bottom:.8rem;
-    font-size:.78rem;
-  }
-  .mob-delta-label{color:var(--muted);}
-  .mob-delta-val{font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:.04em;}
-
-  .mob-ranks{display:flex;gap:.5rem;margin-bottom:.4rem;font-size:.75rem;color:var(--muted);}
-  .mob-ranks span{background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:5px;padding:.2rem .5rem;}
-
-  .mob-search{
-    width:100%; background:var(--card); border:1px solid var(--border);
-    border-radius:8px; color:var(--off-white); font-family:'DM Sans',sans-serif;
-    font-size:.9rem; padding:.7rem 1rem; outline:none; margin-bottom:1rem;
-    transition:border-color .2s; display:block;
-  }
-  .mob-search:focus{border-color:rgba(255,215,0,0.35);}
-  .mob-search::placeholder{color:var(--muted);}
-
-  .mob-filters{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem;}
-  .mob-fbtn{
-    background:var(--card);border:1px solid var(--border);color:var(--muted);
-    padding:.32rem .8rem;border-radius:6px;font-family:'Bebas Neue',sans-serif;
-    letter-spacing:.1em;font-size:.68rem;cursor:pointer;transition:all .2s;
-  }
-  .mob-fbtn:hover,.mob-fbtn.active{background:rgba(255,215,0,0.09);border-color:rgba(255,215,0,0.35);color:var(--gold);}
-
-  .mob-count{font-size:.75rem;color:var(--muted);margin-bottom:.9rem;}
-
-  /* Mobile legend */
-  .mob-legend{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem;font-size:.72rem;}
-  .mob-legend .li{display:flex;align-items:center;gap:.4rem;}
-  .mob-legend .sw{width:10px;height:10px;border-radius:2px;}
   .tc p{font-size:.83rem;color:var(--muted);line-height:1.7;}
+
+  /* YouTube button in expanded body */
+  .yt-full-btn{
+    display:inline-flex;align-items:center;gap:.5rem;margin-top:.2rem;
+    padding:.55rem 1rem;border-radius:8px;
+    background:rgba(255,0,0,0.12);border:1px solid rgba(255,0,0,0.25);
+    color:#FF5555;font-family:'Bebas Neue',sans-serif;
+    letter-spacing:.1em;font-size:.78rem;text-decoration:none;
+    transition:background .2s,border-color .2s;
+  }
+  .yt-full-btn:hover{background:rgba(255,0,0,0.22);border-color:rgba(255,0,0,0.45);}
 
   /* FOOTER */
   footer{position:relative;z-index:1;border-top:1px solid var(--border);padding:3rem 2.5rem;max-width:980px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:2rem;}
@@ -588,65 +512,28 @@
       <button class="fbtn" onclick="ft('sf2',this)">Semi-Final 2</button>
       <button class="fbtn" onclick="ft('auto',this)">Auto-Qualifiers</button>
     </div>
-    <input type="text" class="sinput" id="ts" placeholder="Search country or song…" oninput="st(this.value)">
 
-    <div class="twrap fi">
-      <table>
-        <colgroup>
-          <col class="col-country">
-          <col class="col-song">
-          <col class="col-mkt">
-          <col class="col-mktrank">
-          <col class="col-jury">
-          <col class="col-pub">
-          <col class="col-combined">
-          <col class="col-meritrank">
-          <col class="col-delta">
-          <col class="col-signal">
-          <col class="col-watch">
-        </colgroup>
-        <thead>
-          <tr>
-            <th onclick="sort(0)">Country</th>
-            <th onclick="sort(1)">Song</th>
-            <th onclick="sort(2)">Mkt %</th>
-            <th onclick="sort(3)">Mkt Rank</th>
-            <th onclick="sort(4)">Jury</th>
-            <th onclick="sort(5)">Public</th>
-            <th onclick="sort(6)" class="sorted">Combined</th>
-            <th onclick="sort(7)">Merit Rank</th>
-            <th onclick="sort(8)">Pos. Delta</th>
-            <th>Signal</th>
-            <th>Watch</th>
-          </tr>
-        </thead>
-        <tbody id="tb"></tbody>
-      </table>
+    <input type="text" class="sinput fi" id="ts" placeholder="Search country or song…" oninput="st(this.value)">
+
+    <div class="sort-bar fi">
+      <span>Sort:</span>
+      <button class="sbtn" onclick="sort('combined',this)">Combined ▾</button>
+      <button class="sbtn" onclick="sort('mkt',this)">Market %</button>
+      <button class="sbtn" onclick="sort('delta',this)">Delta</button>
+      <button class="sbtn" onclick="sort('jury',this)">Jury</button>
+      <button class="sbtn" onclick="sort('pub',this)">Public</button>
+      <button class="sbtn" onclick="sort('country',this)">A–Z</button>
     </div>
-    <p style="font-size:.72rem;color:var(--muted);margin-top:.9rem;">
-      Click any column header to sort. Position Delta = bookmaker rank minus merit rank (both out of 35).
+
+    <div class="ec-count fi" id="ecCount"></div>
+    <div class="entry-list fi" id="entryList"></div>
+
+    <p style="font-size:.72rem;color:var(--muted);margin-top:1rem;">
+      Click any entry to expand full scores. Position Delta = bookmaker rank minus merit rank.
       <span style="color:var(--green);">Positive = Undervalued</span> ·
       <span style="color:var(--red);">Negative = Overvalued</span> ·
-      Within ±3 = Solidly Priced. Row colours show our predicted top 10.
+      Within ±3 = Solidly Priced.
     </p>
-
-    <!-- MOBILE VIEW -->
-    <div class="mob-legend fi">
-      <div class="li"><div class="sw sw1"></div><span>Predicted Winner</span></div>
-      <div class="li"><div class="sw sw5"></div><span>Top 5</span></div>
-      <div class="li"><div class="sw sw10"></div><span>Top 10</span></div>
-    </div>
-    <input type="text" class="mob-search fi" id="mobSearch" placeholder="Search country or song…" oninput="mobFilter()">
-    <div class="mob-filters fi" id="mobFilters">
-      <button class="mob-fbtn active" onclick="setMobFilter('all',this)">All 35</button>
-      <button class="mob-fbtn" onclick="setMobFilter('under',this)">🟢 Undervalued</button>
-      <button class="mob-fbtn" onclick="setMobFilter('over',this)">🔴 Overvalued</button>
-      <button class="mob-fbtn" onclick="setMobFilter('fair',this)">Solidly Priced</button>
-      <button class="mob-fbtn" onclick="setMobFilter('sf1',this)">Semi-Final 1</button>
-      <button class="mob-fbtn" onclick="setMobFilter('sf2',this)">Semi-Final 2</button>
-    </div>
-    <div class="mob-count fi" id="mobCount"></div>
-    <div class="mob-cards fi" id="mobCards"></div>
   </div>
 </section>
 
@@ -804,25 +691,33 @@ const entries=[
   {country:"United Kingdom", song:"LOOK MUM NO COMPUTER — Eins, Zwei, Drei",        mkt:1,  jury:5.95,pub:5.14,combined:5.45,sf:"auto",auto:true,  yt:"https://www.youtube.com/results?search_query=Look+Mum+No+Computer+Eins+Zwei+Drei+Eurovision+2026+UK+official"},
 ];
 
+// ── Ranking helpers ──────────────────────────────────────────────
 function avgRanks(arr,kfn){
   const s=[...arr].sort((a,b)=>kfn(b)-kfn(a));
   const r={};let i=0;
-  while(i<s.length){let j=i;while(j<s.length&&kfn(s[j])===kfn(s[i]))j++;const avg=(i+1+j)/2;for(let k=i;k<j;k++)r[s[k].country]=avg;i=j;}
+  while(i<s.length){
+    let j=i;
+    while(j<s.length&&kfn(s[j])===kfn(s[i]))j++;
+    const avg=(i+1+j)/2;
+    for(let k=i;k<j;k++)r[s[k].country]=avg;
+    i=j;
+  }
   return r;
 }
 const mr=avgRanks(entries,e=>e.mkt);
 const cr=avgRanks(entries,e=>e.combined);
 entries.forEach(e=>{
-  e.mktRank=mr[e.country];e.meritRank=cr[e.country];
+  e.mktRank=mr[e.country];
+  e.meritRank=cr[e.country];
   e.delta=Math.round(e.mktRank-e.meritRank);
   e.signal=e.delta>3?'under':e.delta<-3?'over':'fair';
 });
 
-// Top 10 by merit
 const bm=[...entries].sort((a,b)=>b.combined-a.combined);
 const t10=new Set(bm.slice(0,10).map(e=>e.country));
-const t5=new Set(bm.slice(0,5).map(e=>e.country));
+const t5 =new Set(bm.slice(0,5).map(e=>e.country));
 
+// ── Top 5 / 10 ranked lists ──────────────────────────────────────
 function buildList(items,start,id,cls){
   const el=document.getElementById(id);
   if(!el)return;
@@ -836,175 +731,146 @@ function buildList(items,start,id,cls){
 buildList(bm.slice(3,5),4,'top5List','t5');
 buildList(bm.slice(5,10),6,'top10List','t10');
 
-let cf='all',sc=6,sa=false,sq='';
+// ── State ────────────────────────────────────────────────────────
+let cf='all', sortKey='combined', sortAsc=false, sq='';
 
-function rc2(e){
-  if(e.country==='Greece')return'rw';
-  if(t5.has(e.country))return'r5';
-  if(t10.has(e.country))return'r10';
+// ── Helpers ──────────────────────────────────────────────────────
+function ecClass(e){
+  if(e.country==='Greece')return'ec-winner';
+  if(t5.has(e.country))  return'ec-top5';
+  if(t10.has(e.country)) return'ec-top10';
   return'';
 }
-function sh(s){
-  if(s==='under')return'<span class="pill pu">Undervalued</span>';
-  if(s==='over') return'<span class="pill po">Overvalued</span>';
+function sigPill(s){
+  if(s==='under')return'<span class="pill pu">🟢 Undervalued</span>';
+  if(s==='over') return'<span class="pill po">🔴 Overvalued</span>';
   return'<span class="pill pf">Solidly Priced</span>';
 }
-function dh(e){
-  const d=e.delta,sign=d>0?'+':'',cls=d>3?'dpos':d<-3?'dneg':'';
-  const txt=d>3?`${sign}${d} places`:d<-3?`${d} places`:`${sign}${d}`;
-  return`<span class="dc ${cls}">${txt}</span>`;
+function deltaHtml(e){
+  const d=e.delta;
+  const sign=d>0?'+':'';
+  const cls=d>3?'dpos':d<-3?'dneg':'';
+  const txt=d===0?'±0':`${sign}${d}`;
+  return`<span class="ec-dv ${cls}">${txt}</span><span class="ec-lbl">Delta</span>`;
 }
+
+// ── Main render ──────────────────────────────────────────────────
 function render(){
   let data=[...entries];
-  if(cf==='under')data=data.filter(e=>e.signal==='under');
-  else if(cf==='over')data=data.filter(e=>e.signal==='over');
-  else if(cf==='fair')data=data.filter(e=>e.signal==='fair');
-  else if(cf==='sf1')data=data.filter(e=>e.sf==='sf1');
-  else if(cf==='sf2')data=data.filter(e=>e.sf==='sf2');
-  else if(cf==='auto')data=data.filter(e=>e.auto);
+  if(cf==='under') data=data.filter(e=>e.signal==='under');
+  else if(cf==='over')  data=data.filter(e=>e.signal==='over');
+  else if(cf==='fair')  data=data.filter(e=>e.signal==='fair');
+  else if(cf==='sf1')   data=data.filter(e=>e.sf==='sf1');
+  else if(cf==='sf2')   data=data.filter(e=>e.sf==='sf2');
+  else if(cf==='auto')  data=data.filter(e=>e.auto);
   if(sq){const q=sq.toLowerCase();data=data.filter(e=>e.country.toLowerCase().includes(q)||e.song.toLowerCase().includes(q));}
-  const cols=[[0,'country'],[1,'song'],[2,'mkt'],[3,'mktRank'],[4,'jury'],[5,'pub'],[6,'combined'],[7,'meritRank'],[8,'delta']];
-  const[,k]=cols[sc]||[0,'combined'];
+
   data.sort((a,b)=>{
-    const av=a[k],bv=b[k];
-    if(typeof av==='string')return sa?av.localeCompare(bv):bv.localeCompare(av);
-    return sa?av-bv:bv-av;
+    const av=a[sortKey], bv=b[sortKey];
+    if(typeof av==='string') return sortAsc?av.localeCompare(bv):bv.localeCompare(av);
+    return sortAsc?av-bv:bv-av;
   });
-  document.getElementById('tb').innerHTML=data.map(e=>`
-    <tr class="${rc2(e)}">
-      <td class="cc">${e.country}</td>
-      <td class="sc">${e.song}</td>
-      <td>${e.mkt}%</td>
-      <td style="color:var(--muted)">#${Math.round(e.mktRank)}</td>
-      <td class="vc">${e.jury.toFixed(2)}</td>
-      <td class="vc">${e.pub.toFixed(2)}</td>
-      <td class="vc" style="color:var(--gold);font-weight:500">${e.combined.toFixed(2)}</td>
-      <td style="color:var(--muted)">#${Math.round(e.meritRank)}</td>
-      <td>${dh(e)}</td>
-      <td>${sh(e.signal)}</td>
-      <td style="text-align:center"><a href="${e.yt}" target="_blank" rel="noopener" class="yt-btn" title="Watch on YouTube">▶</a></td>
-    </tr>`).join('');
-}
-function sort(c){
-  if(sc===c)sa=!sa;else{sc=c;sa=false;}
-  document.querySelectorAll('th').forEach((t,i)=>t.classList.toggle('sorted',i===c));
-  render();
-}
-function ft(f,btn){
-  cf=f;
-  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');render();
-}
-function st(v){sq=v;render();}
 
-const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});},{threshold:0.08});
-document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
-
-render();
-
-// ── MOBILE CARDS ──
-let mobF='all', mobQ='';
-
-function mobCardClass(e){
-  if(e.country==='Greece') return 'mc-winner';
-  if(t5.has(e.country))   return 'mc-top5';
-  if(t10.has(e.country))  return 'mc-top10';
-  return '';
-}
-
-function mobDeltaTxt(e){
-  const d=e.delta;
-  if(d===0) return{txt:'On the money',cls:''};
-  if(d>3)   return{txt:`+${d} places above market`,cls:'dpos'};
-  if(d<-3)  return{txt:`${Math.abs(d)} places below merit`,cls:'dneg'};
-  return{txt:`Within ${Math.abs(d)} of market`,cls:''};
-}
-
-function renderMobCards(){
-  const fullOrder=[...entries].sort((a,b)=>b.combined-a.combined);
+  // Positional rank within current sort order (for the rank number shown)
+  const meritOrder=[...entries].sort((a,b)=>b.combined-a.combined);
   const meritPos={};
-  fullOrder.forEach((e,i)=>meritPos[e.country]=i+1);
+  meritOrder.forEach((e,i)=>meritPos[e.country]=i+1);
 
-  let data=[...fullOrder];
-  if(mobF==='under') data=data.filter(e=>e.signal==='under');
-  else if(mobF==='over')  data=data.filter(e=>e.signal==='over');
-  else if(mobF==='fair')  data=data.filter(e=>e.signal==='fair');
-  else if(mobF==='sf1')   data=data.filter(e=>e.sf==='sf1');
-  else if(mobF==='sf2')   data=data.filter(e=>e.sf==='sf2');
-  if(mobQ){const q=mobQ.toLowerCase();data=data.filter(e=>e.country.toLowerCase().includes(q)||e.song.toLowerCase().includes(q));}
+  const countEl=document.getElementById('ecCount');
+  if(countEl) countEl.textContent=`Showing ${data.length} of 35 entries · click any row to expand`;
 
-  const countEl=document.getElementById('mobCount');
-  if(countEl) countEl.textContent=`Showing ${data.length} of 35 entries · sorted by merit score`;
+  const list=document.getElementById('entryList');
+  if(!list)return;
 
-  const container=document.getElementById('mobCards');
-  if(!container) return;
-
-  container.innerHTML=data.map(e=>{
+  list.innerHTML=data.map(e=>{
     const pos=meritPos[e.country];
-    const cc=mobCardClass(e);
-    const sigLabel=e.signal==='under'?'🟢 Undervalued':e.signal==='over'?'🔴 Overvalued':'Solidly Priced';
-    const sigCls=e.signal==='under'?'pu':e.signal==='over'?'po':'pf';
-    const {txt:dtxt,cls:dcls}=mobDeltaTxt(e);
-    const cid='mc-'+e.country.replace(/\s+/g,'-');
+    const cc=ecClass(e);
+    const d=e.delta;
+    const dSign=d>0?'+':'';
+    const dCls=d>3?'dpos':d<-3?'dneg':'';
+    const dTxt=d===0?'±0':`${dSign}${d}`;
+
     return`
-    <div class="mob-card ${cc}" id="${cid}">
-      <div class="mob-card-head" onclick="this.closest('.mob-card').classList.toggle('open')">
-        <div class="mob-rank">${pos}</div>
-        <div class="mob-main">
-          <div class="mob-country">${e.country}</div>
-          <div class="mob-song">${e.song}</div>
+    <div class="entry-card ${cc}" id="ec-${e.country.replace(/\s+/g,'-')}">
+      <div class="ec-head" onclick="this.closest('.entry-card').classList.toggle('open')">
+        <div class="ec-rank">${pos}</div>
+        <div class="ec-name">
+          <div class="ec-country-txt">${e.country}</div>
+          <div class="ec-song-hint">${e.song}</div>
         </div>
-        <div class="mob-head-right">
-          <span class="mob-combined">${e.combined.toFixed(2)}</span>
-          <span class="mob-chevron">▼ MORE</span>
+        <div class="ec-col ec-col-mkt">
+          <span class="ec-val">${e.mkt}%</span>
+          <span class="ec-lbl">Market</span>
+        </div>
+        <div class="ec-col ec-col-merit">
+          <span class="ec-val" style="color:var(--gold)">${e.combined.toFixed(2)}</span>
+          <span class="ec-lbl">Combined</span>
+        </div>
+        <div class="ec-col">
+          <span class="ec-dv ${dCls}">${dTxt}</span>
+          <span class="ec-lbl">Delta</span>
+        </div>
+        <div class="ec-sig">${sigPill(e.signal)}</div>
+        <div style="display:flex;align-items:center;justify-content:center;">
+          <span class="ec-chev">▼</span>
         </div>
       </div>
-      <div class="mob-card-body">
-        <div class="mob-signal-row">
-          <span class="pill ${sigCls}">${sigLabel}</span>
-          <span style="font-size:.72rem;color:var(--muted)">Mkt: ${e.mkt}% implied</span>
-        </div>
-        <div class="mob-stats">
-          <div class="mob-stat">
-            <span class="mob-stat-val" style="color:var(--pink)">${e.jury.toFixed(2)}</span>
-            <span class="mob-stat-label">Jury</span>
+      <div class="ec-body">
+        <div class="ec-song-full"><strong>${e.song}</strong></div>
+        <div class="ec-detail-grid">
+          <div class="ec-stat">
+            <span class="ec-sv" style="color:var(--pink)">${e.jury.toFixed(2)}</span>
+            <span class="ec-sl">Jury Lens</span>
           </div>
-          <div class="mob-stat">
-            <span class="mob-stat-val" style="color:var(--blue)">${e.pub.toFixed(2)}</span>
-            <span class="mob-stat-label">Public</span>
+          <div class="ec-stat">
+            <span class="ec-sv" style="color:var(--blue)">${e.pub.toFixed(2)}</span>
+            <span class="ec-sl">Public Lens</span>
           </div>
-          <div class="mob-stat">
-            <span class="mob-stat-val" style="color:var(--gold)">${e.combined.toFixed(2)}</span>
-            <span class="mob-stat-label">Combined</span>
+          <div class="ec-stat">
+            <span class="ec-sv" style="color:var(--gold)">${e.combined.toFixed(2)}</span>
+            <span class="ec-sl">Combined</span>
+          </div>
+          <div class="ec-stat">
+            <span class="ec-sv" style="color:var(--muted)">#${Math.round(e.mktRank)}</span>
+            <span class="ec-sl">Bookie Rank</span>
+          </div>
+          <div class="ec-stat">
+            <span class="ec-sv" style="color:var(--muted)">#${Math.round(e.meritRank)}</span>
+            <span class="ec-sl">Merit Rank</span>
+          </div>
+          <div class="ec-stat">
+            <span class="ec-sv">${e.mkt}%</span>
+            <span class="ec-sl">Implied Win %</span>
           </div>
         </div>
-        <div class="mob-delta-row">
-          <span class="mob-delta-label">vs Bookmakers</span>
-          <span class="mob-delta-val ${dcls}">${dtxt}</span>
-        </div>
-        <div class="mob-ranks">
-          <span>Bookie rank: #${Math.round(e.mktRank)}</span>
-          <span>Our rank: #${Math.round(e.meritRank)}</span>
-        </div>
-        <a href="${e.yt}" target="_blank" rel="noopener" class="mob-yt-btn">▶ Watch on YouTube</a>
+        <a href="${e.yt}" target="_blank" rel="noopener" class="yt-full-btn">▶ Watch on YouTube</a>
       </div>
     </div>`;
   }).join('');
 }
 
-function setMobFilter(f,btn){
-  mobF=f;
-  document.querySelectorAll('.mob-fbtn').forEach(b=>b.classList.remove('active'));
+// ── Controls ─────────────────────────────────────────────────────
+function sort(key, btn){
+  if(sortKey===key) sortAsc=!sortAsc; else{sortKey=key;sortAsc=false;}
+  document.querySelectorAll('.sbtn').forEach(b=>b.classList.remove('sactive'));
+  if(btn) btn.classList.add('sactive');
+  render();
+}
+function ft(f,btn){
+  cf=f;
+  document.querySelectorAll('.fbtn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
-  renderMobCards();
+  render();
 }
+function st(v){sq=v;render();}
 
-function mobFilter(){
-  mobQ=document.getElementById('mobSearch').value;
-  renderMobCards();
-}
+// ── Intersection observer for fade-ins ───────────────────────────
+const obs=new IntersectionObserver(es=>{
+  es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('vis');});
+},{threshold:0.08});
+document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
 
-renderMobCards();
+render();
 </script>
 </body>
 </html>
