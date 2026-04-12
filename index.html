@@ -143,12 +143,26 @@
   .sinput{background:var(--card);border:1px solid var(--border);border-radius:7px;color:var(--off-white);font-family:'DM Sans',sans-serif;font-size:.88rem;padding:.6rem 1rem;width:210px;outline:none;transition:border-color .2s;margin-bottom:1rem;display:block;}
   .sinput:focus{border-color:rgba(255,215,0,0.35);}
   .sinput::placeholder{color:var(--muted);}
+  /* Wider wrap for the data section so the table breathes */
+  #data .wrap{max-width:1160px;}
   .twrap{overflow-x:auto;border-radius:12px;border:1px solid var(--border);}
-  table{width:100%;border-collapse:collapse;font-size:.8rem;}
+  table{width:100%;border-collapse:collapse;font-size:.8rem;table-layout:fixed;}
+  col.col-country{width:130px;}
+  col.col-song{width:auto;}
+  col.col-mkt{width:60px;}
+  col.col-mktrank{width:72px;}
+  col.col-jury{width:60px;}
+  col.col-pub{width:60px;}
+  col.col-combined{width:72px;}
+  col.col-meritrank{width:72px;}
+  col.col-delta{width:100px;}
+  col.col-signal{width:110px;}
+  col.col-watch{width:54px;}
   thead tr{background:rgba(255,255,255,0.04);border-bottom:1px solid var(--border);}
-  th{padding:.9rem 1.1rem;text-align:left;font-family:'Bebas Neue',sans-serif;letter-spacing:.12em;font-size:.7rem;color:var(--muted);white-space:nowrap;cursor:pointer;user-select:none;transition:color .2s;}
+  th{padding:.9rem 1rem;text-align:left;font-family:'Bebas Neue',sans-serif;letter-spacing:.1em;font-size:.68rem;color:var(--muted);white-space:nowrap;cursor:pointer;user-select:none;transition:color .2s;overflow:hidden;text-overflow:ellipsis;}
   th:hover{color:var(--gold);}th.sorted{color:var(--gold);}
-  td{padding:.8rem 1.1rem;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap;}
+  td{padding:.75rem 1rem;border-bottom:1px solid var(--border);vertical-align:middle;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  td.sc{white-space:normal;word-break:break-word;line-height:1.4;}
   tr:last-child td{border-bottom:none;}
 
   /* Row colour tiers */
@@ -160,8 +174,8 @@
   tr.r10:hover td{background:rgba(255,45,120,0.09);}
   tr:not(.rw):not(.r5):not(.r10):hover td{background:rgba(255,255,255,0.025);}
 
-  .cc{font-weight:500;max-width:190px;overflow:hidden;text-overflow:ellipsis;}
-  .sc{color:var(--muted);font-size:.75rem;max-width:185px;overflow:hidden;text-overflow:ellipsis;}
+  .cc{font-weight:500;}
+  .sc{color:var(--muted);font-size:.75rem;}
   .vc{font-family:'DM Serif Display',serif;font-size:.95rem;}
   .dc{font-family:'Bebas Neue',sans-serif;font-size:.9rem;letter-spacing:.04em;}
   .dpos{color:var(--green);}.dneg{color:var(--red);}
@@ -578,6 +592,19 @@
 
     <div class="twrap fi">
       <table>
+        <colgroup>
+          <col class="col-country">
+          <col class="col-song">
+          <col class="col-mkt">
+          <col class="col-mktrank">
+          <col class="col-jury">
+          <col class="col-pub">
+          <col class="col-combined">
+          <col class="col-meritrank">
+          <col class="col-delta">
+          <col class="col-signal">
+          <col class="col-watch">
+        </colgroup>
         <thead>
           <tr>
             <th onclick="sort(0)">Country</th>
@@ -855,7 +882,7 @@ function render(){
       <td style="color:var(--muted)">#${Math.round(e.meritRank)}</td>
       <td>${dh(e)}</td>
       <td>${sh(e.signal)}</td>
-      <td><a href="${e.yt}" target="_blank" rel="noopener" class="yt-btn" title="Watch on YouTube">▶</a></td>
+      <td style="text-align:center"><a href="${e.yt}" target="_blank" rel="noopener" class="yt-btn" title="Watch on YouTube">▶</a></td>
     </tr>`).join('');
 }
 function sort(c){
