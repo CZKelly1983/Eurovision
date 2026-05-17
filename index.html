@@ -170,19 +170,19 @@
   .entry-card.ec-top5  {border-color:rgba(0,200,255,0.2); background:linear-gradient(135deg,rgba(0,200,255,0.045),rgba(255,255,255,0.018));}
   .entry-card.ec-top10 {border-color:rgba(255,45,120,0.17);background:linear-gradient(135deg,rgba(255,45,120,0.03),rgba(255,255,255,0.018));}
 
-  /* Rank | Name | Combined | Bookie# | Merit# | Delta | Signal | Chevron */
+  /* Rank | Name | Combined | Bookie# | Merit# | Delta | Actual | Signal | Chevron */
   .ec-head{
     display:grid;
-    grid-template-columns: 2.6rem 1fr 80px 80px 80px 80px 128px 44px;
+    grid-template-columns: 2.6rem 1fr 80px 80px 80px 80px 80px 128px 44px;
     align-items:center;
     padding:.8rem 1.2rem;cursor:pointer;user-select:none;gap:0;
   }
   @media(max-width:820px){
-    .ec-head{grid-template-columns: 2.2rem 1fr 76px 76px 76px 120px 36px;}
+    .ec-head{grid-template-columns: 2.2rem 1fr 76px 76px 76px 76px 120px 36px;}
     .ec-col-merit-rank{display:none;}
   }
   @media(max-width:560px){
-    .ec-head{grid-template-columns: 2.2rem 1fr 76px 76px 116px 32px;}
+    .ec-head{grid-template-columns: 2.2rem 1fr 76px 76px 76px 116px 32px;}
     .ec-col-bookie{display:none;}
   }
 
@@ -317,8 +317,14 @@
     letter-spacing:.1em; font-size:.8rem; text-decoration:none;
     transition:background .2s, border-color .2s;
   }
-  .mob-yt-btn:hover{background:rgba(255,0,0,0.22); border-color:rgba(255,0,0,0.45);}
-</style>
+  .ec-winner-banner{display:flex;align-items:center;gap:.5rem;font-family:'Bebas Neue',sans-serif;font-size:.72rem;letter-spacing:.1em;color:var(--gold);background:rgba(255,215,0,0.08);border:1px solid rgba(255,215,0,0.2);border-radius:6px;padding:.3rem .7rem;margin-bottom:.5rem;width:fit-content;}
+  .ar-pos{font-family:'DM Serif Display',serif;font-size:1rem;line-height:1.2;}
+  .ar-pos.ar-win{color:var(--gold);}
+  .ar-pos.ar-top5{color:var(--blue);}
+  .ar-pos.ar-top10{color:var(--pink);}
+  .ar-pos.ar-other{color:var(--muted);}
+  .ar-pos.ar-dnq{color:var(--red);opacity:.7;}
+
 </head>
 <body>
 <div class="page">
@@ -326,6 +332,7 @@
 <nav>
   <a href="https://czkelly1983.github.io/theunanswered/" class="nav-brand">The Unanswered</a>
   <ul class="nav-links">
+    <li><a href="#reckoning" style="color:var(--gold);">The Results</a></li>
     <li><a href="#verdict">The Verdict</a></li>
     <li><a href="#findings">The Findings</a></li>
     <li><a href="#data">All 35 Entries</a></li>
@@ -335,21 +342,21 @@
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-kicker">The Sandbox · Eurovision 2026 · Vienna · May 16</div>
-  <p class="hero-verdict">We scored every entry without hearing a single note.</p>
+  <div class="hero-kicker">The Sandbox · Eurovision 2026 · Vienna · Results</div>
+  <p class="hero-verdict">We scored every entry without hearing a single note. Here's how we did.</p>
   <h1>
-    <span>Greece</span>
-    <span>came <em>first.</em></span>
-    <span>The bookmakers</span>
-    <span>have it <em>eighth.</em></span>
+    <span>Bulgaria</span>
+    <span><em>won.</em></span>
+    <span>We called it</span>
+    <span>a <em>dark horse.</em></span>
   </h1>
   <div class="hero-meta">
-    <div><span class="hero-meta-val">35</span><span class="hero-meta-label">Entries Scored</span></div>
-    <div><span class="hero-meta-val">10</span><span class="hero-meta-label">Criteria</span></div>
-    <div><span class="hero-meta-val">3</span><span class="hero-meta-label">Lens Frameworks</span></div>
-    <div><span class="hero-meta-val">31%</span><span class="hero-meta-label">Finland's Implied Odds</span></div>
+    <div><span class="hero-meta-val">1st</span><span class="hero-meta-label">Bulgaria — Our Dark Horse</span></div>
+    <div><span class="hero-meta-val">2%</span><span class="hero-meta-label">Bulgaria's Implied Odds</span></div>
+    <div><span class="hero-meta-val">10th</span><span class="hero-meta-label">Greece — Our #1 Pick</span></div>
+    <div><span class="hero-meta-val">6th</span><span class="hero-meta-label">Finland — We Said Overvalued</span></div>
   </div>
-  <span class="scroll-hint">Read the analysis</span>
+  <span class="scroll-hint">See the reckoning</span>
 </div>
 
 <!-- VOICE -->
@@ -363,19 +370,127 @@
       <p>Everyone knows that Eurovision voting is geographically tied. It's an unspoken agreement that hangs over every result — the Balkan bloc, the Scandinavian sympathy vote, the diaspora surge. I wanted to understand just how much that actually mattered. Could a substandard song accumulate enough from being simply from the right location at the right moment? Or are there more important criteria hiding underneath the politics?</p>
       <p>The real question underneath all of that is simpler: <strong>is Eurovision actually a song contest?</strong> Or is it a system the right country can game — hit the Loreen button, optimise for the instrument rather than the art, and collect your trophy.</p>
       <p>So we built an instrument and applied it. Without hearing a single song. Just from what's been written about them, what's been performed at national finals, and what's happening in the world right now. It might get everything wrong. But it might also show that Eurovision is considerably less random than it looks — and that the market, for all its confidence, is missing something obvious.</p>
-      <p><em>Greece came first. The bookmakers have it eighth.</em></p>
+      <p><em>The results are in. Bulgaria won. We called it a dark horse at 2% implied odds. The market was looking elsewhere. The instrument wasn't.</em></p>
     </div>
   </div>
 </div>
 
 <hr class="div">
 
+<!-- RECKONING -->
+<section id="reckoning">
+  <div class="wrap">
+    <div class="eyebrow gold fi">The Results · 16 May 2026</div>
+    <h2 class="fi">The instrument <em>checked</em><br>against reality.</h2>
+    <p class="lead fi">The Grand Final is over. Bulgaria won with 516 points — the dark horse the instrument flagged at 2% implied odds. Here's the full honest reckoning: where the framework was right, where it overcalled, and what it means for the next version.</p>
+
+    <div class="pq fi">
+      <p>"Bulgaria scored 7.21 Combined — ranked 5th by the instrument. The market had it at 2% implied. It won. Our dark horse call was the most valuable signal in the dataset, and the most ignored one at the time."</p>
+      <cite>The Instrument — Post-Contest Verdict</cite>
+    </div>
+
+    <!-- Result scorecard grid -->
+    <div class="findings-grid fi" style="margin-top:0;">
+
+      <div class="fc" style="border-color:rgba(255,215,0,0.35);background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,255,255,0.02));">
+        <span class="ftag tw">⭐ Dark Horse — WON</span>
+        <div class="fcn">Bulgaria</div><div class="fcs">DARA — Bangaranga</div>
+        <div class="fnum">
+          <div><span class="fv fn">5th</span><span class="fl">Our Rank</span></div>
+          <div><span class="fv fg">1st</span><span class="fl">Actual</span></div>
+          <div><span class="fv fg">516 pts</span><span class="fl">Points</span></div>
+        </div>
+        <p class="fb">The instrument ranked it 5th. The market had it at 2% implied. It won both jury and televote — the first double victory since 2017. Originality scored 9, joint highest in the field. Balkan-trap with sampled Kukeri bells. The instrument saw it. The market didn't. This is the result that validates the whole project.</p>
+      </div>
+
+      <div class="fc">
+        <span class="ftag tu">🟢 Called Undervalued — 10th</span>
+        <div class="fcn">Greece</div><div class="fcs">Akylas — Ferto</div>
+        <div class="fnum">
+          <div><span class="fv fg">1st</span><span class="fl">Our Rank</span></div>
+          <div><span class="fv" style="color:var(--blue);">10th</span><span class="fl">Actual</span></div>
+          <div><span class="fv" style="color:var(--muted);">220 pts</span><span class="fl">Points</span></div>
+        </div>
+        <p class="fb">Top score in the instrument at 7.85 Combined. Called undervalued by the market at 8%. It placed 10th — inside the top ten, which validates the core signal, but far short of the win. The framework read the song correctly; it underweighted how the live staging would fail to translate the studio promise.</p>
+      </div>
+
+      <div class="fc">
+        <span class="ftag to">🔴 Called Overvalued — 6th</span>
+        <div class="fcn">Finland</div><div class="fcs">Linda Lampenius &amp; Pete Parkkonen</div>
+        <div class="fnum">
+          <div><span class="fv fr">3rd</span><span class="fl">Our Rank</span></div>
+          <div><span class="fv" style="color:var(--blue);">6th</span><span class="fl">Actual</span></div>
+          <div><span class="fv" style="color:var(--muted);">279 pts</span><span class="fl">Points</span></div>
+        </div>
+        <p class="fb">The market had Finland at 31% implied. The instrument had it third. It finished sixth. The overvaluation call was correct — it didn't win, it didn't even medal. A 25-point gap separates the instrument's merit rank from the bookmakers' implied favourite. The market paid a premium it couldn't cash.</p>
+      </div>
+
+      <div class="fc">
+        <span class="ftag tu">🟢 Called Undervalued — 2nd</span>
+        <div class="fcn">Israel</div><div class="fcs">Noam Bettan — Michelle</div>
+        <div class="fnum">
+          <div><span class="fv fg">12th</span><span class="fl">Our Rank</span></div>
+          <div><span class="fv fg">2nd</span><span class="fl">Actual</span></div>
+          <div><span class="fv fg">343 pts</span><span class="fl">Points</span></div>
+        </div>
+        <p class="fb">The instrument ranked Israel 12th. It finished second with 343 points, driven by heavy televote support. The geo/diaspora scoring (9) was correct on direction — this is exactly the voting pattern the instrument described. The score underweighted how dominant that single variable would become on the night.</p>
+      </div>
+
+      <div class="fc">
+        <span class="ftag to">🔴 Called Overvalued — 7th</span>
+        <div class="fcn">Denmark</div><div class="fcs">Søren Torpegaard Lund</div>
+        <div class="fnum">
+          <div><span class="fv fr">14th</span><span class="fl">Our Rank</span></div>
+          <div><span class="fv" style="color:var(--blue);">7th</span><span class="fl">Actual</span></div>
+          <div><span class="fv" style="color:var(--muted);">243 pts</span><span class="fl">Points</span></div>
+        </div>
+        <p class="fb">The instrument's "biggest overvaluation" call. Ranked Denmark 14th. Market had it 3rd. It finished 7th — better than the instrument said, but the market was still wrong to have it as a potential winner. A partial hit: the direction of overvaluation was correct, the magnitude was overstated.</p>
+      </div>
+
+      <div class="fc">
+        <span class="ftag to">🔴 Called Overvalued — 3rd</span>
+        <div class="fcn">Romania</div><div class="fcs">Alexandra Căpitănescu — Choke Me</div>
+        <div class="fnum">
+          <div><span class="fv fn">4th</span><span class="fl">Our Rank</span></div>
+          <div><span class="fv fg">3rd</span><span class="fl">Actual</span></div>
+          <div><span class="fv fg">296 pts</span><span class="fl">Points</span></div>
+        </div>
+        <p class="fb">Scored 7.24 Combined — ranked 4th by merit. Finished 3rd overall with 296 points. This was one of the instrument's better reads: a returning country with strong originality and staging ambition. The market underpriced it too; the instrument had it higher than the bookmakers did.</p>
+      </div>
+
+    </div>
+
+    <!-- Summary stats bar -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:1rem;margin-top:3rem;padding:2rem;background:rgba(255,255,255,0.025);border:1px solid var(--border);border-radius:14px;" class="fi">
+      <div style="text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--gold);line-height:1;">7/10</div>
+        <div style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;">Predicted Top 10 Finishers</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--green);line-height:1;">1st</div>
+        <div style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;">Dark Horse — Actual Winner</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--blue);line-height:1;">6th</div>
+        <div style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;">Finland — Predicted 3rd, Bookie 1st</div>
+      </div>
+      <div style="text-align:center;">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--pink);line-height:1;">2%</div>
+        <div style="font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:.3rem;">Bulgaria's Implied Odds at Kick-off</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<hr class="div">
+
 <!-- VERDICT -->
 <section id="verdict">
   <div class="wrap">
-    <div class="eyebrow gold fi">The Verdict</div>
+    <div class="eyebrow gold fi">The Pre-Contest Verdict</div>
     <h2 class="fi">Our <em>predicted</em> winner<br>and the full top ten.</h2>
-    <p class="lead fi">Ranked by Combined Lens score — the framework's best model of what actually wins Eurovision. No hearing required. The scores are built entirely from what's been written, what's been performed at national finals, and what the world looks like right now.</p>
+    <p class="lead fi">This was the instrument's prediction before the Grand Final — ranked by Combined Lens score, built entirely from written research, national final performances, and market signals. No hearing required. Compare against the actual results in the section above.</p>
 
     <div class="podium-row fi">
       <div class="podium-card p2">
@@ -423,12 +538,12 @@
 <!-- FINDINGS -->
 <section id="findings">
   <div class="wrap">
-    <div class="eyebrow blue fi">The Findings</div>
-    <h2 class="fi">What the market<br>refuses to <em>see.</em></h2>
+    <div class="eyebrow blue fi">The Pre-Contest Findings</div>
+    <h2 class="fi">What the market<br><em>refused</em> to see.</h2>
 
     <div class="pq fi">
-      <p>"The top three by Combined Lens are Greece at 7.85, Ukraine at 7.79, and Finland at 7.57. The market prices them at 8%, 3%, and 31% respectively. That spread is the sharpest, most defensible finding in this analysis."</p>
-      <cite>The Instrument — Combined Lens Rankings</cite>
+      <p>"The top three by Combined Lens were Greece at 7.85, Ukraine at 7.79, and Finland at 7.57. The market priced them at 8%, 3%, and 31% respectively. The dark horse was Bulgaria at 2%. It won. The spread was the sharpest, most defensible finding in this analysis — and the result confirmed the market was wrong about what mattered."</p>
+      <cite>The Instrument — Combined Lens Rankings · Pre-Contest</cite>
     </div>
 
     <div class="findings-grid">
@@ -472,15 +587,15 @@
         </div>
         <p class="fb">The biggest single overvaluation in this dataset. The instrument ranks Denmark 14th — a solid jury-bait ballad, low on originality, low on earworm. The market has it third. Eleven positions separate the bookmakers from the scores. That gap needs a better explanation than the music provides.</p>
       </div>
-      <div class="fc fi">
-        <span class="ftag tw">⭐ Dark Horse</span>
+      <div class="fc fi" style="border-color:rgba(255,215,0,0.35);background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,255,255,0.02));">
+        <span class="ftag tw">🏆 Dark Horse — Won Eurovision</span>
         <div class="fcn">Bulgaria</div><div class="fcs">DARA — Bangaranga</div>
         <div class="fnum">
           <div><span class="fv fg">7.21</span><span class="fl">Combined</span></div>
           <div><span class="fv fg">+8</span><span class="fl">Positions</span></div>
           <div><span class="fv fr">2%</span><span class="fl">Market</span></div>
         </div>
-        <p class="fb">Balkan-Trap-Pop with sampled Kukeri bells — originality scored 9, the joint highest in the field. Returning country after a three-year absence. The ESC Insight predictive model has been moving this upward week on week. Eight positions above its market rank. The market is looking elsewhere.</p>
+        <p class="fb">Balkan-Trap-Pop with sampled Kukeri bells — originality scored 9, the joint highest in the field. Returning country after a three-year absence. The ESC Insight predictive model had been moving this upward week on week. The market was at 2% implied. The instrument said dark horse. <strong style="color:var(--gold);">It won with 516 points — dominating both jury and televote.</strong></p>
       </div>
       <div class="fc fi">
         <span class="ftag to">🔴 Overvalued</span>
@@ -514,6 +629,7 @@
       <div class="li"><div class="sw sw1"></div><span>Predicted Winner (Greece)</span></div>
       <div class="li"><div class="sw sw5"></div><span>Predicted Top 5</span></div>
       <div class="li"><div class="sw sw10"></div><span>Predicted Top 10</span></div>
+      <div class="li"><span style="color:var(--muted);font-size:.75rem;">· Actual column shows final result (DNQ = did not qualify from semi-final)</span></div>
     </div>
 
     <div class="filter-row fi">
@@ -637,8 +753,8 @@
         <p>Greece was upgraded most significantly from an earlier pass: earworm to 9, staging ambition to 9, emotional resonance to 8 — all research-justified after reviewing national final performances and fan response. Poland was downgraded: originality and earworm both reduced after multiple reviewers called it technically strong but generically forgettable.</p>
       </div>
       <div class="tc">
-        <h3>Come back on 17 May</h3>
-        <p>This page will be updated after the Grand Final with actual results against all three lenses. Every predicted position checked against reality. Every delta named. The question the instrument was built to answer publicly: how right were we, and where did the framework fail?</p>
+        <h3>What happened on 17 May</h3>
+        <p>Bulgaria won. Our dark horse — flagged at 2% market implied odds, scored 7.21 Combined, ranked 5th by merit — took the trophy with 516 points. Greece placed 10th (predicted 1st). Finland placed 6th (market said 1st, we said overvalued). 7 of our predicted top 10 finished in the actual top 10. The framework didn't get the winner right by Combined score, but it got the market's biggest mispricing right.</p>
       </div>
     </div>
     <p style="margin-top:2rem;font-size:.83rem;color:var(--muted);">
@@ -667,41 +783,41 @@
 
 <script>
 const entries=[
-  {country:"Albania",        song:"Alis — Nân",                                     mkt:1,  jury:6.79,pub:6.15,combined:6.38,sf:"sf2", auto:false, yt:"https://www.youtube.com/watch?v=WB76D0JWWA0"},
-  {country:"Armenia",        song:"SIMÓN — Paloma Rumba",                            mkt:1,  jury:6.79,pub:6.67,combined:6.69,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Eurovision+2026+Armenia+SIMON+Paloma+Rumba+official"},
-  {country:"Australia",      song:"Delta Goodrem — Eclipse",                         mkt:8,  jury:7.84,pub:7.03,combined:7.44,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Delta+Goodrem+Eclipse+Eurovision+2026+official"},
-  {country:"Austria",        song:"COSMÓ — Tanzschein",                              mkt:2,  jury:7.17,pub:6.78,combined:7.00,sf:"auto",auto:true,  yt:"https://www.youtube.com/watch?v=zPGP9ZphxiY"},
-  {country:"Azerbaijan",     song:"JIVA — Just Go",                                  mkt:1,  jury:6.13,pub:6.11,combined:6.11,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=JIVA+Just+Go+Eurovision+2026+Azerbaijan+official"},
-  {country:"Belgium",        song:"ESSYLA — Dancing on the Ice",                     mkt:1,  jury:6.62,pub:5.99,combined:6.24,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=ESSYLA+Dancing+on+the+Ice+Eurovision+2026+Belgium+official"},
-  {country:"Bulgaria",       song:"DARA — Bangaranga",                               mkt:2,  jury:7.29,pub:7.22,combined:7.21,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=DARA+Bangaranga+Eurovision+2026+Bulgaria+official"},
-  {country:"Croatia",        song:"LELEK — Andromeda",                               mkt:2,  jury:7.41,pub:7.06,combined:7.19,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=LELEK+Andromeda+Eurovision+2026+Croatia+official"},
-  {country:"Cyprus",         song:"Antigoni — JALLA",                                mkt:2,  jury:6.93,pub:7.17,combined:6.98,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Antigoni+JALLA+Eurovision+2026+Cyprus+official"},
-  {country:"Czechia",        song:"Daniel Žižka — CROSSROADS",                      mkt:2,  jury:6.45,pub:5.67,combined:6.00,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Daniel+Zizka+CROSSROADS+Eurovision+2026+Czechia+official"},
-  {country:"Denmark",        song:"Søren Torpegaard Lund — Før vi går hjem",         mkt:10, jury:7.11,pub:6.72,combined:6.93,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Soren+Torpegaard+For+vi+gar+hjem+Eurovision+2026+Denmark+official"},
-  {country:"Estonia",        song:"Vanilla Ninja — Too Epic To Be True",             mkt:1,  jury:6.82,pub:6.36,combined:6.59,sf:"sf1", auto:false, yt:"https://www.youtube.com/watch?v=NaXdeENuhDA"},
-  {country:"Finland",        song:"Linda Lampenius & Pete Parkkonen — Liekinheitin", mkt:31, jury:7.87,pub:7.15,combined:7.57,sf:"sf1", auto:false, yt:"https://www.youtube.com/watch?v=IPvJbGy5_o0"},
-  {country:"France",         song:"Monroe — Regarde !",                              mkt:11, jury:7.52,pub:6.69,combined:7.13,sf:"auto",auto:true,  yt:"https://www.youtube.com/results?search_query=Monroe+Regarde+Eurovision+2026+France+official"},
-  {country:"Georgia",        song:"Bzikebi — On Replay",                             mkt:1,  jury:6.05,pub:6.06,combined:6.05,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Bzikebi+On+Replay+Eurovision+2026+Georgia+official"},
-  {country:"Germany",        song:"Sarah Engels — Fire",                              mkt:1,  jury:5.80,pub:5.34,combined:5.55,sf:"auto",auto:true,  yt:"https://www.youtube.com/results?search_query=Sarah+Engels+Fire+Eurovision+2026+Germany+official"},
-  {country:"Greece",         song:"Akylas — Ferto",                                  mkt:8,  jury:8.02,pub:7.82,combined:7.85,sf:"sf1", auto:false, yt:"https://www.youtube.com/watch?v=NGwNTd_DA9s"},
-  {country:"Israel",         song:"Noam Bettan — Michelle",                          mkt:5,  jury:6.82,pub:7.21,combined:6.97,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Noam+Bettan+Michelle+Eurovision+2026+Israel+official"},
-  {country:"Italy",          song:"Sal Da Vinci — Per sempre sì",                    mkt:3,  jury:6.68,pub:6.15,combined:6.39,sf:"auto",auto:true,  yt:"https://www.youtube.com/results?search_query=Sal+Da+Vinci+Per+sempre+si+Eurovision+2026+Italy+official"},
-  {country:"Latvia",         song:"Atvara — Ēnā",                                    mkt:1,  jury:6.94,pub:6.25,combined:6.53,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Atvara+Ena+Eurovision+2026+Latvia+official"},
-  {country:"Lithuania",      song:"Lion Ceccah — Sólo Quiero Más",                  mkt:1,  jury:6.72,pub:6.49,combined:6.57,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Lion+Ceccah+Solo+Quiero+Mas+Eurovision+2026+Lithuania+official"},
-  {country:"Luxembourg",     song:"Eva Marija — Mother Nature",                      mkt:1,  jury:7.11,pub:6.46,combined:6.74,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Eva+Marija+Mother+Nature+Eurovision+2026+Luxembourg+official"},
-  {country:"Malta",          song:"AIDAN — Bella",                                   mkt:1,  jury:6.34,pub:6.20,combined:6.25,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=AIDAN+Bella+Eurovision+2026+Malta+official"},
-  {country:"Moldova",        song:"Satoshi — Viva, Moldova!",                        mkt:1,  jury:6.91,pub:7.12,combined:6.95,sf:"sf1", auto:false, yt:"https://www.youtube.com/watch?v=ZC9VEIkKNJ4"},
-  {country:"Montenegro",     song:"Tamara Živković — Nova Zora",                     mkt:1,  jury:6.96,pub:6.31,combined:6.57,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Tamara+Zivkovic+Nova+Zora+Eurovision+2026+Montenegro+official"},
-  {country:"Norway",         song:"JONAS LOVV — YA YA YA",                          mkt:2,  jury:6.68,pub:6.70,combined:6.74,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Jonas+Lovv+Ya+Ya+Ya+Eurovision+2026+Norway+official"},
-  {country:"Poland",         song:"ALICJA — Pray",                                  mkt:2,  jury:7.29,pub:6.65,combined:6.92,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Alicja+Pray+Eurovision+2026+Poland+official"},
-  {country:"Portugal",       song:"Bandidos do Cante — Rosa",                        mkt:1,  jury:7.00,pub:5.96,combined:6.38,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Bandidos+do+Cante+Rosa+Eurovision+2026+Portugal+official"},
-  {country:"Romania",        song:"Alexandra Căpitănescu — Choke Me",                mkt:4,  jury:7.45,pub:7.19,combined:7.24,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Alexandra+Capitanescu+Choke+Me+Eurovision+2026+Romania+official"},
-  {country:"San Marino",     song:"SENHIT — Superstar",                              mkt:1,  jury:6.94,pub:6.74,combined:6.86,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=SENHIT+Superstar+Eurovision+2026+San+Marino+official"},
-  {country:"Serbia",         song:"LAVINA — Kraj Mene",                              mkt:1,  jury:7.06,pub:6.76,combined:6.84,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=LAVINA+Kraj+Mene+Eurovision+2026+Serbia+official"},
-  {country:"Sweden",         song:"FELICIA — My System",                             mkt:4,  jury:7.38,pub:6.91,combined:7.20,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=FELICIA+My+System+Eurovision+2026+Sweden+official"},
-  {country:"Switzerland",    song:"Veronica Fusaro — Alice",                         mkt:1,  jury:7.07,pub:6.30,combined:6.63,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Veronica+Fusaro+Alice+Eurovision+2026+Switzerland+official"},
-  {country:"Ukraine",        song:"LELÉKA — Ridnym",                                 mkt:3,  jury:7.89,pub:7.85,combined:7.79,sf:"sf2", auto:false, yt:"https://www.youtube.com/watch?v=SoEXezpblAc"},
-  {country:"United Kingdom", song:"LOOK MUM NO COMPUTER — Eins, Zwei, Drei",        mkt:1,  jury:5.95,pub:5.14,combined:5.45,sf:"auto",auto:true,  yt:"https://www.youtube.com/results?search_query=Look+Mum+No+Computer+Eins+Zwei+Drei+Eurovision+2026+UK+official"},
+  {country:"Albania",        song:"Alis — Nân",                                     mkt:1,  jury:6.79,pub:6.15,combined:6.38,sf:"sf2", auto:false, yt:"https://www.youtube.com/watch?v=WB76D0JWWA0",               actualRank:13, actualPoints:145},
+  {country:"Armenia",        song:"SIMÓN — Paloma Rumba",                            mkt:1,  jury:6.79,pub:6.67,combined:6.69,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Eurovision+2026+Armenia+SIMON+Paloma+Rumba+official", actualRank:null, actualPoints:null},
+  {country:"Australia",      song:"Delta Goodrem — Eclipse",                         mkt:8,  jury:7.84,pub:7.03,combined:7.44,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Delta+Goodrem+Eclipse+Eurovision+2026+official",       actualRank:4,  actualPoints:287},
+  {country:"Austria",        song:"COSMÓ — Tanzschein",                              mkt:2,  jury:7.17,pub:6.78,combined:7.00,sf:"auto",auto:true,  yt:"https://www.youtube.com/watch?v=zPGP9ZphxiY",              actualRank:24, actualPoints:6},
+  {country:"Azerbaijan",     song:"JIVA — Just Go",                                  mkt:1,  jury:6.13,pub:6.11,combined:6.11,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=JIVA+Just+Go+Eurovision+2026+Azerbaijan+official",      actualRank:null, actualPoints:null},
+  {country:"Belgium",        song:"ESSYLA — Dancing on the Ice",                     mkt:1,  jury:6.62,pub:5.99,combined:6.24,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=ESSYLA+Dancing+on+the+Ice+Eurovision+2026+Belgium+official", actualRank:21, actualPoints:36},
+  {country:"Bulgaria",       song:"DARA — Bangaranga",                               mkt:2,  jury:7.29,pub:7.22,combined:7.21,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=DARA+Bangaranga+Eurovision+2026+Bulgaria+official",      actualRank:1,  actualPoints:516},
+  {country:"Croatia",        song:"LELEK — Andromeda",                               mkt:2,  jury:7.41,pub:7.06,combined:7.19,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=LELEK+Andromeda+Eurovision+2026+Croatia+official",       actualRank:15, actualPoints:124},
+  {country:"Cyprus",         song:"Antigoni — JALLA",                                mkt:2,  jury:6.93,pub:7.17,combined:6.98,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Antigoni+JALLA+Eurovision+2026+Cyprus+official",         actualRank:19, actualPoints:75},
+  {country:"Czechia",        song:"Daniel Žižka — CROSSROADS",                      mkt:2,  jury:6.45,pub:5.67,combined:6.00,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Daniel+Zizka+CROSSROADS+Eurovision+2026+Czechia+official", actualRank:16, actualPoints:113},
+  {country:"Denmark",        song:"Søren Torpegaard Lund — Før vi går hjem",         mkt:10, jury:7.11,pub:6.72,combined:6.93,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Soren+Torpegaard+For+vi+gar+hjem+Eurovision+2026+Denmark+official", actualRank:7, actualPoints:243},
+  {country:"Estonia",        song:"Vanilla Ninja — Too Epic To Be True",             mkt:1,  jury:6.82,pub:6.36,combined:6.59,sf:"sf1", auto:false, yt:"https://www.youtube.com/watch?v=NaXdeENuhDA",              actualRank:null, actualPoints:null},
+  {country:"Finland",        song:"Linda Lampenius & Pete Parkkonen — Liekinheitin", mkt:31, jury:7.87,pub:7.15,combined:7.57,sf:"sf1", auto:false, yt:"https://www.youtube.com/watch?v=IPvJbGy5_o0",              actualRank:6,  actualPoints:279},
+  {country:"France",         song:"Monroe — Regarde !",                              mkt:11, jury:7.52,pub:6.69,combined:7.13,sf:"auto",auto:true,  yt:"https://www.youtube.com/results?search_query=Monroe+Regarde+Eurovision+2026+France+official",         actualRank:11, actualPoints:158},
+  {country:"Georgia",        song:"Bzikebi — On Replay",                             mkt:1,  jury:6.05,pub:6.06,combined:6.05,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Bzikebi+On+Replay+Eurovision+2026+Georgia+official",      actualRank:null, actualPoints:null},
+  {country:"Germany",        song:"Sarah Engels — Fire",                              mkt:1,  jury:5.80,pub:5.34,combined:5.55,sf:"auto",auto:true,  yt:"https://www.youtube.com/results?search_query=Sarah+Engels+Fire+Eurovision+2026+Germany+official",      actualRank:23, actualPoints:12},
+  {country:"Greece",         song:"Akylas — Ferto",                                  mkt:8,  jury:8.02,pub:7.82,combined:7.85,sf:"sf1", auto:false, yt:"https://www.youtube.com/watch?v=NGwNTd_DA9s",              actualRank:10, actualPoints:220},
+  {country:"Israel",         song:"Noam Bettan — Michelle",                          mkt:5,  jury:6.82,pub:7.21,combined:6.97,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Noam+Bettan+Michelle+Eurovision+2026+Israel+official",    actualRank:2,  actualPoints:343},
+  {country:"Italy",          song:"Sal Da Vinci — Per sempre sì",                    mkt:3,  jury:6.68,pub:6.15,combined:6.39,sf:"auto",auto:true,  yt:"https://www.youtube.com/results?search_query=Sal+Da+Vinci+Per+sempre+si+Eurovision+2026+Italy+official", actualRank:5, actualPoints:281},
+  {country:"Latvia",         song:"Atvara — Ēnā",                                    mkt:1,  jury:6.94,pub:6.25,combined:6.53,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Atvara+Ena+Eurovision+2026+Latvia+official",              actualRank:null, actualPoints:null},
+  {country:"Lithuania",      song:"Lion Ceccah — Sólo Quiero Más",                  mkt:1,  jury:6.72,pub:6.49,combined:6.57,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Lion+Ceccah+Solo+Quiero+Mas+Eurovision+2026+Lithuania+official", actualRank:22, actualPoints:22},
+  {country:"Luxembourg",     song:"Eva Marija — Mother Nature",                      mkt:1,  jury:7.11,pub:6.46,combined:6.74,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Eva+Marija+Mother+Nature+Eurovision+2026+Luxembourg+official", actualRank:null, actualPoints:null},
+  {country:"Malta",          song:"AIDAN — Bella",                                   mkt:1,  jury:6.34,pub:6.20,combined:6.25,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=AIDAN+Bella+Eurovision+2026+Malta+official",              actualRank:18, actualPoints:89},
+  {country:"Moldova",        song:"Satoshi — Viva, Moldova!",                        mkt:1,  jury:6.91,pub:7.12,combined:6.95,sf:"sf1", auto:false, yt:"https://www.youtube.com/watch?v=ZC9VEIkKNJ4",              actualRank:8,  actualPoints:226},
+  {country:"Montenegro",     song:"Tamara Živković — Nova Zora",                     mkt:1,  jury:6.96,pub:6.31,combined:6.57,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Tamara+Zivkovic+Nova+Zora+Eurovision+2026+Montenegro+official", actualRank:null, actualPoints:null},
+  {country:"Norway",         song:"JONAS LOVV — YA YA YA",                          mkt:2,  jury:6.68,pub:6.70,combined:6.74,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Jonas+Lovv+Ya+Ya+Ya+Eurovision+2026+Norway+official",       actualRank:14, actualPoints:134},
+  {country:"Poland",         song:"ALICJA — Pray",                                  mkt:2,  jury:7.29,pub:6.65,combined:6.92,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Alicja+Pray+Eurovision+2026+Poland+official",              actualRank:12, actualPoints:150},
+  {country:"Portugal",       song:"Bandidos do Cante — Rosa",                        mkt:1,  jury:7.00,pub:5.96,combined:6.38,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=Bandidos+do+Cante+Rosa+Eurovision+2026+Portugal+official",  actualRank:null, actualPoints:null},
+  {country:"Romania",        song:"Alexandra Căpitănescu — Choke Me",                mkt:4,  jury:7.45,pub:7.19,combined:7.24,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Alexandra+Capitanescu+Choke+Me+Eurovision+2026+Romania+official", actualRank:3, actualPoints:296},
+  {country:"San Marino",     song:"SENHIT — Superstar",                              mkt:1,  jury:6.94,pub:6.74,combined:6.86,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=SENHIT+Superstar+Eurovision+2026+San+Marino+official",      actualRank:null, actualPoints:null},
+  {country:"Serbia",         song:"LAVINA — Kraj Mene",                              mkt:1,  jury:7.06,pub:6.76,combined:6.84,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=LAVINA+Kraj+Mene+Eurovision+2026+Serbia+official",          actualRank:17, actualPoints:90},
+  {country:"Sweden",         song:"FELICIA — My System",                             mkt:4,  jury:7.38,pub:6.91,combined:7.20,sf:"sf1", auto:false, yt:"https://www.youtube.com/results?search_query=FELICIA+My+System+Eurovision+2026+Sweden+official",          actualRank:20, actualPoints:51},
+  {country:"Switzerland",    song:"Veronica Fusaro — Alice",                         mkt:1,  jury:7.07,pub:6.30,combined:6.63,sf:"sf2", auto:false, yt:"https://www.youtube.com/results?search_query=Veronica+Fusaro+Alice+Eurovision+2026+Switzerland+official", actualRank:null, actualPoints:null},
+  {country:"Ukraine",        song:"LELÉKA — Ridnym",                                 mkt:3,  jury:7.89,pub:7.85,combined:7.79,sf:"sf2", auto:false, yt:"https://www.youtube.com/watch?v=SoEXezpblAc",              actualRank:9,  actualPoints:221},
+  {country:"United Kingdom", song:"LOOK MUM NO COMPUTER — Eins, Zwei, Drei",        mkt:1,  jury:5.95,pub:5.14,combined:5.45,sf:"auto",auto:true,  yt:"https://www.youtube.com/results?search_query=Look+Mum+No+Computer+Eins+Zwei+Drei+Eurovision+2026+UK+official", actualRank:25, actualPoints:1},
 ];
 
 // ── Ranking helpers ──────────────────────────────────────────────
@@ -749,7 +865,8 @@ let cf='all', sortKey='combined', sortAsc=false, sq='';
 
 // ── Helpers ──────────────────────────────────────────────────────
 function ecClass(e){
-  if(e.country==='Greece')return'ec-winner';
+  if(e.country==='Bulgaria') return'ec-winner'; // actual winner
+  if(e.country==='Greece')return'ec-top5';
   if(t5.has(e.country))  return'ec-top5';
   if(t10.has(e.country)) return'ec-top10';
   return'';
@@ -827,6 +944,9 @@ function render(){
           <span class="ec-dv ${dCls}">${dTxt}</span>
           <span class="ec-lbl">Delta</span>
         </div>
+        <div class="ec-col">
+          ${e.actualRank ? `<span class="ar-pos ${e.actualRank===1?'ar-win':e.actualRank<=5?'ar-top5':e.actualRank<=10?'ar-top10':'ar-other'}">${e.actualRank===1?'🏆 1st':'#'+e.actualRank}</span><span class="ec-lbl">${e.actualPoints} pts</span>` : `<span class="ar-pos ar-dnq">DNQ</span><span class="ec-lbl">Semi-Final</span>`}
+        </div>
         <div class="ec-sig">${sigPill(e.signal)}</div>
         <div style="display:flex;align-items:center;justify-content:center;">
           <span class="ec-chev">▼</span>
@@ -858,6 +978,14 @@ function render(){
           <div class="ec-stat">
             <span class="ec-sv">${e.mkt}%</span>
             <span class="ec-sl">Implied Win %</span>
+          </div>
+          <div class="ec-stat">
+            <span class="ec-sv" style="color:${e.actualRank===1?'var(--gold)':e.actualRank&&e.actualRank<=5?'var(--blue)':e.actualRank&&e.actualRank<=10?'var(--pink)':'var(--muted)'}">${e.actualRank ? '#'+e.actualRank : 'DNQ'}</span>
+            <span class="ec-sl">Actual Result</span>
+          </div>
+          <div class="ec-stat">
+            <span class="ec-sv" style="color:var(--muted)">${e.actualPoints !== null ? e.actualPoints+' pts' : '—'}</span>
+            <span class="ec-sl">Actual Points</span>
           </div>
         </div>
         <a href="${e.yt}" target="_blank" rel="noopener" class="yt-full-btn">▶ Watch on YouTube</a>
